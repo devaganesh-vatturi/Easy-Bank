@@ -2,8 +2,12 @@ const user= require('../models/userModel');
 const transaction=require('../models/transactionModel');
 exports.createUser= async(req,res)=>{
     console.log(req.body);
+    const {name,phno,balance,address,password}=req.body;
+
     try{
-        const User= await user.create(req.body);
+        const accno=await generateAccno();
+        console.log("the accno",accno);
+        const User= await user.create({name,phno,accno,balance,address,password});
         res.status(201).json(User);
     }
     catch(e)
@@ -11,7 +15,12 @@ exports.createUser= async(req,res)=>{
       res.status(500).json({message:"failed"});
     }
 }
-
+async function generateAccno()
+{
+    const lastacc= await user.findOne().sort({accno:-1}).select("accno").lean();
+    const newaccno = (lastacc?.accno ?? 1000000000) + 1;
+    return (newaccno);
+}
 exports.getUser= async(req,res)=>{
     console.log(req.body.name);
     try{

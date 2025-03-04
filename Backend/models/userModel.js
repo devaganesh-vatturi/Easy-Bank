@@ -5,6 +5,10 @@ const userSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    phno:{
+        type:Number,
+        required:true
+    },
     accno:{
         type:Number,
         required:true
