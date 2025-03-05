@@ -14,9 +14,16 @@ if (!MONGO_URL) {
     console.error("MONGO_URL is not defined. Check your .env file.");
     process.exit(1);
 }
-
 const user=require('./Routes/userRoute.js');
 app.use("/bank",user);
+
+app.get(['/', '/bank'], (req, res) => {
+    try{
+    res.sendFile(__dirname + '/index.html');
+    }catch(e){
+      console.log("erorrrrr", e);
+    }
+  });
 mongoose.connect(MONGO_URL).then(()=>{
     console.log("DB is Connected");
     app.listen(5000,()=>{
