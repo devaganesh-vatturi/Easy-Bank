@@ -16,7 +16,7 @@ export default function CreateUser() {
       
       try{
         const result= await axios.post("http://localhost:5000/bank/createuser",Userdata);
-        if(result.response.success)
+        if(result.data.success)
         {
           alert("successfully created user name");
         }

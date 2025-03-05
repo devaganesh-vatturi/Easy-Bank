@@ -8,7 +8,7 @@ exports.createUser= async(req,res)=>{
         const accno=await generateAccno();
         console.log("the accno",accno);
         const User= await user.create({name,phno,accno,balance,address,password});
-        res.status(201).json(User);
+        res.status(201).json({success:true,user:User});
     }
     catch(e)
     {
@@ -29,7 +29,7 @@ exports.getUser= async(req,res)=>{
         {
                return res.status(404).json({message:"user not found"});
         }
-            res.status(300).json({User});
+            res.status(200).json({User});
         // res.status(404).json({"not found"});
     }
     catch(e)
@@ -42,6 +42,7 @@ exports.getUser= async(req,res)=>{
 exports.withDraw=async(req,res)=>{
 
     try{
+        console.log(req.body)
     let accnum=req.body.accno;
      let money=req.body.amount;
      
@@ -56,10 +57,9 @@ exports.withDraw=async(req,res)=>{
         {
             let newbalance=balance-money;
             const updatebalance= await user.findOneAndUpdate({accno:accnum},{$set:{balance:newbalance}},{new:true});
-             await updatebalance.save();
              let obj={accno:accnum,amount:money,balance:updatebalance.balance,description:"Withdrawed",type:"debited"}
              const trans=await transaction.create(obj);
-            res.status(200).json({success:true,newbalance:`${updatebalance.balance}`});
+            res.status(200).json({success:true,balance:updatebalance.balance});
         }
         else{
             res.status(401).json({message:"balance is insufficient"});
@@ -84,7 +84,7 @@ exports.depositAmount=async(req,res)=>{
             const result= await user.findOneAndUpdate({accno:accno},{$inc:{balance:amount}},{new:true});
             if(result)
             {
-                res.status(200).json({success:`new balance is ${result.balance}`});
+                res.status(200).json({success:true,balance:result.balance});
                 //transaction
                 let obj={accno:accno, amount:amount,balance:result.balance,description :"Deposited",type:"credited"};
                 const trans= await transaction.create(obj);
@@ -123,7 +123,7 @@ exports.transferAmount=async(req,res)=>{
             let object={accno:taccno,amount:amount,balance:updatedTUser.balance,description:`reveived from ${accno}`,type:"credited"};
             let trans=await transaction.create(obj);
             let transac=await transaction.create(object);
-            res.status(200).json({message:`your updated balance is ${updatedUser.balance}`});
+            res.status(200).json({success:true, balance:updatedUser.balance});
           }
           else{
              res.status(404).json({message:"insufficient balance!"});
@@ -143,8 +143,10 @@ exports.transferAmount=async(req,res)=>{
 exports.getHistory=async(req,res)=>{
     try{
         let accno=req.body.accno;
+        console.log(accno);
         const result=await transaction.find({accno:accno}).sort({time:-1});
-        res.status(200).json({result:{result}});
+        console.log(result);
+        res.status(200).json({success:true,history:result});
     }
     catch(e)
     {
@@ -152,14 +154,14 @@ exports.getHistory=async(req,res)=>{
     }
 }
 exports.deleteUser=async(req,res)=>{
-    console.log(req.body.name);
+    console.log(req.body.accno);
     try{
-        const User=await user.findOneAndDelete({name:req.body.name});
+        const User=await user.findOneAndDelete({accno:req.body.accno});
         if(!User)
         {
             return res.status(404).json({message:"not user found"});
         }
-        res.status(200).json("suceefully deleted");
+        res.status(200).json({success:true});
     }
     catch(e)
     {
