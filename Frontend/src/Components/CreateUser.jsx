@@ -15,7 +15,7 @@ export default function CreateUser() {
       if(Userdata.password.length>6){
       
       try{
-        const result= await axios.post("http://localhost:5000/bank/createuser",Userdata);
+        const result= await axios.post("https://easybank-qgjy.onrender.com/bank/createuser",Userdata);
         if(result.data.success)
         {
           alert("successfully created user name");

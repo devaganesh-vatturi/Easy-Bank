@@ -12,7 +12,7 @@ export default function DeleteUser() {
     if(user.accno!=0)
     {
       try{
-        const result=await axios.post("http://localhost:5000/bank/deleteuser",user);
+        const result=await axios.post("https://easybank-qgjy.onrender.com/bank/deleteuser",user);
         if(result.data.success)
         {
           alert("successfullt deleted!");

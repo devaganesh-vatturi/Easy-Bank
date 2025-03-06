@@ -13,7 +13,7 @@ export default function Withdraw() {
     if(user.accno!=0 && user.amount !=0)
     {
       try{
-        const result=await axios.post("http://localhost:5000/bank/withdraw",user);
+        const result=await axios.post("https://easybank-qgjy.onrender.com/bank/withdraw",user);
         if(result.data.success)
         {
           alert(`successfully debited new balance is ${result.data.balance}`)

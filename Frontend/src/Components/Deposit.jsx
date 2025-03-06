@@ -10,7 +10,7 @@ export default function Deposit() {
     if( user.accno!=0 && user.amount !=0)
     {
       try{
-        const result=await axios.post("http://localhost:5000/bank/deposit",user);
+        const result=await axios.post("https://easybank-qgjy.onrender.com/bank/deposit",user);
         if(result.data.success)
         {
           alert(`successfully deposited new balance is ${result.data.balance}`);
