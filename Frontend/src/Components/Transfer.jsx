@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
 export default function Transfer() {
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
 
@@ -32,6 +34,7 @@ export default function Transfer() {
   }
   return (
     <div>
+      <Header/>
      <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' onChange={handleChange} name="accno" />
       <p>Enter accno you want to transfer:</p>
@@ -39,6 +42,7 @@ export default function Transfer() {
       <p>Enter amount:</p>
       <input type="number" placeholder='Balance' onChange={handleChange} name="amount" />
       <p onClick={handleSubmit}>Submit</p>
+      <Footer/>
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-
+import Header from './Header';
+import Footer from './Footer';
+import '../Styles/CreateUser.css'
 export default function CreateUser() {
   const [Userdata, setUser] = useState({
         name:"",phno:"",balance:0,address:"",password:""
@@ -31,7 +33,9 @@ export default function CreateUser() {
   }
 }
   return (
-    <div>
+    <div className='create'>
+      <Header/>
+      <div className='create-main'>
       <p>Enter user name:</p>
       <input type="text" placeholder='User name' name="name" onChange={handleChange}/>
       <p>Enter phone number</p>
@@ -42,7 +46,11 @@ export default function CreateUser() {
       <input type="text" placeholder='Address' name="address" onChange={handleChange}/>
       <p>Enter password:</p>
       <input type="text" placeholder='Password' name="password" onChange={handleChange}/>
-      <p onClick={handleSubmit}>Submit</p>
+      <div className='create-sub-div'>
+      <p className="create-submit" onClick={handleSubmit}>Submit</p>
+      </div>
+      </div>
+      <Footer/>
     </div>
   )
 }

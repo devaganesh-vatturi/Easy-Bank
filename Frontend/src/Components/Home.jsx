@@ -1,4 +1,6 @@
 import React from 'react'
+import Header from './Header';
+import Footer from './Footer';
 
 export default function Home() {
 
@@ -22,12 +24,14 @@ export default function Home() {
   }
   return (
     <div>
+      <Header/>
       <p onClick={gocreateuser}>createuser</p>
       <p onClick={godeleteuser}>deleteuser</p>
       <p onClick={godeposit}>deposit</p>
       <p onClick={gotransfer}>transfer</p>
       <p onClick={gowithdraw}>withdraw</p>
       <p onClick={gohistory}>history</p>
+      <Footer/>
     </div>
   )
 }

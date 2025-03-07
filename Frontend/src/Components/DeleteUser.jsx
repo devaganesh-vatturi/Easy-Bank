@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios';
+import Header from './Header';
+import Footer from './Footer';
 export default function DeleteUser() {
   const [user, setUser] = useState({accno:0});
   const handleChange=(e)=>{
@@ -29,10 +31,12 @@ export default function DeleteUser() {
   }
   return (
     <div>
+      <Header/>
       <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' name="accno" onChange={handleChange}/>
       <p onClick={handleSubmit}>Submit</p>
       <p>{user.accno}</p>
+      <Footer/>
     </div>
   )
 }

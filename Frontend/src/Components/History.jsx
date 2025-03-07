@@ -1,6 +1,8 @@
 import React, {useState}from 'react';
 import axios from 'axios';
 import PrintList from './PrintList';
+import Header from './Header';
+import Footer from './Footer';
 export default function History() {
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
@@ -34,7 +36,7 @@ export default function History() {
   }
   return (
     <div>
-
+      <Header/>
       <p>Enter acc no</p>
       <input type="text" name="accno" onChange={handleChange} />
       <p onClick={handelSubmit}>Submit</p>
@@ -48,6 +50,7 @@ export default function History() {
         }
         </>
       }
+      <Footer/>
     </div>
   )
 }
