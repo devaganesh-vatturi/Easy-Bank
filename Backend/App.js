@@ -9,7 +9,7 @@ app.use(cors());
 app.get('/',(req,res)=>{
     res.send("hey");
 });
-
+console.log("MONGO_URL from process.env:", process.env.MONGO_URL);
 if (!MONGO_URL) {
     console.error("MONGO_URL is not defined. Check your .env file.");
     process.exit(1);
