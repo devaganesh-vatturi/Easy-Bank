@@ -1,13 +1,18 @@
-.create{
+.wdraw{
     background-color: black;
     color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height:100vh;
 }
-.create-main {
-  min-height: 70vh;
+.wdraw-main {
+ 
     color:#ff6f00;
     padding: 20px;
     border-radius: 8px;
-    width: 60vw;
+    width: 40vw;
+    height:25vh;
     margin: 50px auto;
     box-shadow: 0 4px 10px #ff6f00;
     display: flex;
@@ -15,13 +20,13 @@
     gap: 12px;
   }
   
-  .create-main p {
+  .wdraw-main p {
     margin: 0;
     font-size: 16px;
     font-weight: bold;
   }
   
-  .create-main input {
+  .wdraw-main input {
     background-color: #000000;
     border: 1px solid #f5a623;
     color: white;
@@ -31,16 +36,16 @@
     transition: 0.3s;
   }
   
-  .create-main input::placeholder {
+  .wdraw-main input::placeholder {
     color: #bbb;
   }
   
-  .create-main input:focus {
+  .wdraw-main input:focus {
     border-color: #ff9900;
     box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
   }
   
-  .create-submit{
+  .wdraw-submit{
     background-color:#ff6f00;
     color: black;
     text-align: center;
@@ -53,11 +58,11 @@
   margin: 10px auto; 
   }
   
-  .create-submit:hover {
+  .wdraw-submit:hover {
     background-color:  #e16e15;
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
   }
-  .create-sub-div{
+  .wdraw-sub-div{
     display: grid;
     place-items: center;
     width:100%;

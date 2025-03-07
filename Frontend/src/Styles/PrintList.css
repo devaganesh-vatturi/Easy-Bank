@@ -1,0 +1,18 @@
+.plist{
+    width:100%;
+    height:fit-content;
+    padding:2%;
+    margin-bottom: 2%;
+    display: flex;
+    color:#ff6f00;
+    justify-content: space-between;
+    box-shadow: 1px 2px 5px #ff6f00;
+
+}
+
+.plist-amount{
+    font-size:2rem;
+}
+.plsit-balance{
+    font-size:1.2rem;
+}

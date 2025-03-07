@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
-
+import '../Styles/Withdraw.css'
 export default function Withdraw() {
   const [user, setUser] = useState({accno:0,amount:0});
   const handleChange=(e)=>{
@@ -34,13 +34,17 @@ export default function Withdraw() {
     }
   }
   return (
-    <div>
+    <div className='wdraw'>
       <Header/>
+      <div className='wdraw-main'>
       <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' onChange={handleChange} name="accno" />
       <p>Enter amount:</p>
       <input type="number" placeholder='Amount' onChange={handleChange} name="amount" />
-      <p onClick={handleSubmit}>Submit</p>
+      <div className='wdraw-sub-div'>
+      <p onClick={handleSubmit} className='wdraw-submit'>Submit</p>
+      </div>
+      </div>
       <Footer/>
       </div>
   )

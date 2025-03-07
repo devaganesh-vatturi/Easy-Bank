@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
+import '../Styles/Deposit.css'
 export default function Deposit() {
   const [user, setUser] = useState({accno:0,amount:0});
   const handleChange=(e)=>{
@@ -28,13 +29,17 @@ export default function Deposit() {
     }
   }
   return (
-    <div>
+    <div className='deposit'>
       <Header/>
+      <div className='deposit-main'>
       <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' onChange={handleChange} name="accno"/>
       <p>Enter amount:</p>
       <input type="number" placeholder='Amount'onChange={handleChange} name="amount"/>
-      <p onClick={handleSubmit}>Submit</p>
+      <div className='deposit-sub-div'>
+      <p onClick={handleSubmit} className='deposit-submit'>Submit</p>
+      </div>
+      </div>
       <Footer/>
     </div>
   )

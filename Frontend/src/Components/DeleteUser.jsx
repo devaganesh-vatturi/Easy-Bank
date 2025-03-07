@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
+import '../Styles/DeleteUser.css'
 export default function DeleteUser() {
   const [user, setUser] = useState({accno:0});
   const handleChange=(e)=>{
@@ -30,12 +31,15 @@ export default function DeleteUser() {
     }
   }
   return (
-    <div>
+    <div  className='delete'>
       <Header/>
+      <div className='delete-main'>
       <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' name="accno" onChange={handleChange}/>
-      <p onClick={handleSubmit}>Submit</p>
-      <p>{user.accno}</p>
+      <div className='delete-sub-div'>
+      <p onClick={handleSubmit} className='delete-submit'>Submit</p>
+      </div>
+      </div>
       <Footer/>
     </div>
   )
