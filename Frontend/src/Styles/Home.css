@@ -25,6 +25,7 @@
 @media (max-width: 768px) {
     .home-main {
       grid-template-columns: 1fr; 
+      height:fit-content;
     }
     .hero-div{
 
