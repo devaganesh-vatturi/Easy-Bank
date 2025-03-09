@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header';
 import Footer from './Footer';
-
+import '../Styles/Home.css'
 export default function Home() {
 
   const gocreateuser=(e)=>{
@@ -25,12 +25,27 @@ export default function Home() {
   return (
     <div>
       <Header/>
-      <p onClick={gocreateuser}>createuser</p>
-      <p onClick={godeleteuser}>deleteuser</p>
-      <p onClick={godeposit}>deposit</p>
-      <p onClick={gotransfer}>transfer</p>
-      <p onClick={gowithdraw}>withdraw</p>
-      <p onClick={gohistory}>history</p>
+      <div className='home-main'>
+        <div className='hero-div' onClick={gocreateuser}>
+          <div className='home-img img1'></div><p id="home-hero-btn">Create User</p>
+        </div>
+        <div className='hero-div' onClick={godeposit}>
+          <div className='home-img img2'></div><p id="home-hero-btn">Deposit</p>
+        </div>
+        <div className='hero-div' onClick={gowithdraw}>
+          <div className='home-img img3'></div><p id="home-hero-btn">Withdraw</p>
+        </div>
+        <div className='hero-div' onClick={gotransfer}>
+          <div className='home-img img4'></div><p id="home-hero-btn">Transfer</p>
+          </div>
+        <div className='hero-div' onClick={gohistory}>
+          <div className='home-img img5'></div><p id="home-hero-btn">History</p>
+          </div>
+        <div className='hero-div' onClick={godeleteuser}>
+          <div className='home-img img6'></div><p id="home-hero-btn">Delete User</p>
+          </div>
+
+      </div>
       <Footer/>
     </div>
   )

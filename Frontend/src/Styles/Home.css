@@ -1,0 +1,73 @@
+.home-main{
+    background-color: black;
+    color:#ff6f00;
+    width:100%;
+    height: 100vh;
+    box-shadow: 0 4px 10px #ff6f00;
+    display:grid;
+   grid-template-columns: repeat(3,1fr);
+   justify-content: center;
+}
+.hero-div{
+    box-shadow: 1px 2px 4px 1px #ff6f00;
+    margin:30px 60px;
+    height:40vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.hero-div:hover{
+    transform:scale(1.1);
+     cursor: pointer;
+}
+@media (max-width: 768px) {
+    .home-main {
+      grid-template-columns: 1fr; 
+    }
+    .hero-div{
+
+    }
+  }
+  .home-img{
+    /* border: 2px solid white; */
+    border-radius: 50%;
+    height:180px;
+    width:180px;
+  }
+  .img1,.img2,.img3,.img4,.img5,.img6{
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .img1{
+    background-image: url('../assets/createuser.jpg');
+  }
+  .img2{
+    background-image: url('../assets/deposit.jpg');
+  }
+  .img3{
+    background-image: url('../assets/withdraw.jpg');
+  }
+  .img4{
+    background-image: url('../assets/transfer.jpg');
+  }
+  .img5{
+    background-image: url('../assets/history.jpg');
+  }
+  .img6{
+    background-image: url('../assets/deleteuser.jpg');
+  }
+  #home-hero-btn{
+    height:10%;
+    padding:12px 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #ff6f00;
+    color: black;
+  }
+  #home-hero-btn:hover{
+    background-color: #ce5d07;
+    color:white;
+  }
