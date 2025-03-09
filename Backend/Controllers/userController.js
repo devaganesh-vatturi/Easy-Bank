@@ -18,7 +18,7 @@ exports.createUser= async(req,res)=>{
 async function generateAccno()
 {
     const lastacc= await user.findOne().sort({accno:-1}).select("accno").lean();
-    const newaccno = (lastacc?.accno ?? 1000000000) + 1;
+    const newaccno = (lastacc?.accno ?? 1000) + 1;
     return (newaccno);
 }
 exports.getUser= async(req,res)=>{
