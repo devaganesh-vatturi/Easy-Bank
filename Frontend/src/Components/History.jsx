@@ -3,7 +3,9 @@ import axios from 'axios';
 import PrintList from './PrintList';
 import Header from './Header';
 import Footer from './Footer';
-import '../Styles/History.css'
+import '../Styles/History.css';
+import {jsPDF} from 'jspdf';
+import autoTable from 'jspdf-autotable';
 export default function History() {
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
@@ -12,6 +14,47 @@ export default function History() {
     const {name,value}=e.target;
     setUser({...user,[name]:value});
   }
+
+  const generatePDF = (data) => {
+    const doc = new jsPDF();
+  
+    // Title
+    doc.setFontSize(18);
+    doc.text('Transaction Report', 14, 20);
+  
+    // Convert data to table format
+    const tableData = data.map((item, index) => [
+      index + 1, // Serial Number
+      item.accno,
+      item.amount,
+      item.balance,
+      item.description
+    ]);
+  
+    // Define table headers
+    const headers = [['S.No', 'Account No', 'Amount', 'Balance', 'Description']];
+  
+    // Add table using autoTable
+    autoTable(doc, {
+      head: headers,
+      body: tableData,
+      startY: 30, // Start position from top
+      theme: 'grid', // Table theme
+      styles: {
+        fontSize: 10,
+        cellPadding: 3,
+        valign: 'middle',
+        halign: 'center',
+      },
+      headStyles: {
+        fillColor: [22, 160, 133], // Header color
+        textColor: [255, 255, 255], // Header text color
+      },
+    });
+  
+    // Save PDF automatically
+    doc.save('transaction_report.pdf');
+  };
   const handelSubmit =async(e)=>{
     if(user.accno!=0)
     {
@@ -20,7 +63,8 @@ export default function History() {
         if(result.data.success)
         {
             setHistory(result.data.history);
-            console.log(result.data.history)
+            generatePDF(result.data.history);
+            console.log(result.data.history);
         }
         else{
           console.log("invalid accno");

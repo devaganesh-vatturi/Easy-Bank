@@ -3,6 +3,7 @@ import React,{useState} from 'react'
 import Header from './Header';
 import Footer from './Footer';
 import '../Styles/CreateUser.css'
+import {jsPDF} from 'jspdf';
 export default function CreateUser() {
   const [Userdata, setUser] = useState({
         name:"",phno:"",balance:0,address:"",password:""
@@ -12,6 +13,24 @@ export default function CreateUser() {
        const{name,value}=e.target;
        setUser({...Userdata,[name]:value});
   }
+  const generatePDF = (object) => {
+    const doc = new jsPDF();
+  
+    doc.setFontSize(18);
+    doc.text('Core Banker', 20, 20);
+  
+    // Add content
+    doc.setFontSize(12);
+    doc.text(`Account number: ${object.accno}`, 20, 30);
+    doc.text(`User name: ${object.name}`, 20, 40);
+    doc.text(`Balance: ${object.balance}`, 20, 50);
+    doc.text(`Phone Number: ${object.phno}`, 20, 60);
+    doc.text(`Address: ${object.address}`, 20, 70);
+    doc.text(`Account number ${object.accno}`, 20, 80);
+  
+    // Save PDF
+    doc.save(`${object.name}'s account.pdf`);
+  };
   const handleSubmit =async(e)=>{
       console.log(Userdata);
       if(Userdata.password.length>6){
@@ -21,6 +40,8 @@ export default function CreateUser() {
         if(result.data.success)
         {
           alert("successfully created user name");
+          generatePDF(result.data.user);
+          // console.log(result.data.user);
         }
       }
       catch(e)
