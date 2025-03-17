@@ -2,12 +2,12 @@ const user= require('../models/userModel');
 const transaction=require('../models/transactionModel');
 exports.createUser= async(req,res)=>{
     console.log(req.body);
-    const {name,phno,balance,address,password}=req.body;
+    const {name,phno,balance,address}=req.body;
 
     try{
         const accno=await generateAccno();
         console.log("the accno",accno);
-        const User= await user.create({name,phno,accno,balance,address,password});
+        const User= await user.create({name,phno,accno,balance,address});
         res.status(201).json({success:true,user:User});
     }
     catch(e)

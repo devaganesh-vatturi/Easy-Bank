@@ -6,7 +6,7 @@ import '../Styles/CreateUser.css'
 import {jsPDF} from 'jspdf';
 export default function CreateUser() {
   const [Userdata, setUser] = useState({
-        name:"",phno:"",balance:0,address:"",password:""
+        name:"",phno:"",balance:0,address:""
   });
   const handleChange = (e)=>{
     e.preventDefault();
@@ -33,7 +33,7 @@ export default function CreateUser() {
   };
   const handleSubmit =async(e)=>{
       console.log(Userdata);
-      if(Userdata.password.length>6){
+    
       
       try{
         const result= await axios.post("https://easybank-qgjy.onrender.com/bank/createuser",Userdata);
@@ -48,10 +48,6 @@ export default function CreateUser() {
       {
 
       }
-  }
-  else{
-    alert('invalid password');
-  }
 }
   return (
     <div className='create'>
@@ -65,8 +61,6 @@ export default function CreateUser() {
       <input type="number" placeholder='Balance' name="balance"onChange={handleChange}/>
       <p>Enter address:</p>
       <input type="text" placeholder='Address' name="address" onChange={handleChange}/>
-      <p>Enter password:</p>
-      <input type="text" placeholder='Password' name="password" onChange={handleChange}/>
       <div className='create-sub-div'>
       <p className="create-submit" onClick={handleSubmit}>Submit</p>
       </div>
