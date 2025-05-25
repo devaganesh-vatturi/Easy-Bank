@@ -1,0 +1,28 @@
+.logout {
+  background-color: #ff6f00; /* Green */
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+}
+
+.logout:hover {
+  background-color: #bc5404;
+  transform: translateY(-2px);
+}
+
+.logout:active {
+  transform: translateY(1px);
+}
+@media (max-width:600px)
+{
+    .logout{
+         padding: 8px 18px;
+    }
+}

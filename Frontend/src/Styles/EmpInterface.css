@@ -1,0 +1,95 @@
+.empin-main{
+    background-color: black;
+    color:#ff6f00;
+    width:100%;
+    height:fit-content;
+    /* display:grid;
+   grid-template-columns: repeat(3,1fr);
+   justify-content: center; */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.empin{
+  padding-top:10vh;
+  font-family: sans-serif;
+}
+.empin-div{
+    box-shadow: 1px 2px 4px 1px #ff6f00;
+    /* border: 2px solid white; */
+    width:70%;
+    margin:30px 60px;
+    height:25vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.empin-div:hover{
+    transform:scale(1.02);
+     cursor: pointer;
+}
+.empin-h1{
+  font-size: 2rem;
+  padding-top: 40px;
+  color: #ffffff;
+  font-weight: bold;
+
+}
+.empin-hero-t1{
+  font-size: 1.8rem;
+  color:white;
+  opacity: 0.9;
+  font-weight: bold;
+}
+.empin-hero-t2{
+  font-size:0.9rem;
+  color:white;
+  opacity: 0.6;
+  font-weight: bold;
+}
+#empin-hero{
+ margin-left:50px;
+}
+  .empin-img{
+    margin-right: 30px;
+    border-radius: 50%;
+    height:180px;
+    width:180px;
+  }
+  .img1,.img2,.img3,.img4,.img5,.img6{
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .img1{
+    background-image: url('../assets/createuser.jpg');
+  }
+  .img2{
+    background-image: url('../assets/deposit.jpg');
+  }
+  .img3{
+    background-image: url('../assets/withdraw.jpg');
+  }
+  .img4{
+    background-image: url('../assets/transfer.jpg');
+  }
+  .img5{
+    background-image: url('../assets/history.jpg');
+  }
+  .img6{
+    background-image: url('../assets/deleteuser.jpg');
+  }
+
+  @media (max-width: 768px) {
+    .empin-img{
+      background-size: contain;
+    }
+    .empin-h1{
+      font-size: 1.6rem;
+    }
+    .empin-hero-t1{
+      font-size: 1.4rem;
+    }
+  }

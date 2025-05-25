@@ -1,11 +1,11 @@
 import React, {useState}from 'react';
 import axios from 'axios';
-import PrintList from './PrintList';
-import Header from './Header';
-import Footer from './Footer';
-import '../Styles/History.css';
+import PrintList from '../PrintList';
+import Footer from '../Landingpage/Footer';
+import '../../Styles/History.css';
 import {jsPDF} from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import InHeader from '../LoginsandModes/InHeader';
 export default function History() {
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
@@ -17,29 +17,25 @@ export default function History() {
 
   const generatePDF = (data) => {
     const doc = new jsPDF();
-  
-    // Title
     doc.setFontSize(18);
     doc.text('Transaction Report', 14, 20);
   
     // Convert data to table format
     const tableData = data.map((item, index) => [
-      index + 1, // Serial Number
+      index + 1,
       item.accno,
       item.amount,
       item.balance,
       item.description
     ]);
   
-    // Define table headers
     const headers = [['S.No', 'Account No', 'Amount', 'Balance', 'Description']];
   
-    // Add table using autoTable
     autoTable(doc, {
       head: headers,
       body: tableData,
       startY: 30, // Start position from top
-      theme: 'grid', // Table theme
+      theme: 'grid',
       styles: {
         fontSize: 10,
         cellPadding: 3,
@@ -47,15 +43,14 @@ export default function History() {
         halign: 'center',
       },
       headStyles: {
-        fillColor: [22, 160, 133], // Header color
-        textColor: [255, 255, 255], // Header text color
+        fillColor: [22, 160, 133],
+        textColor: [255, 255, 255], 
       },
     });
   
-    // Save PDF automatically
     doc.save('transaction_report.pdf');
   };
-  const handelSubmit =async(e)=>{
+  const handleSubmit =async(e)=>{
     if(user.accno!=0)
     {
       try{
@@ -81,13 +76,12 @@ export default function History() {
   }
   return (
     <div className='history'>
-      <Header/>
+      <InHeader/>
+      <div className='history-div'>
       <div className='history-main'>
       <p>Enter acc no</p>
       <input type="text" name="accno" onChange={handleChange} />
-      <div className='history-sub-div'>
-      <p onClick={handelSubmit} className='history-submit'>Submit</p>
-      </div>
+    <center className="history-submit" onClick={handleSubmit}>Submit</center>
        
       
       </div>
@@ -97,6 +91,7 @@ export default function History() {
            type={obj.type} time={obj.time}/>
           ))):(<p>no transaction exists</p>)
         }
+        </div>
         </div>
       <Footer/>
     </div>

@@ -1,12 +1,16 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css';
-import Home from './Components/Home';
-import CreateUser from './Components/CreateUser';
-import DeleteUser from './Components/DeleteUser';
-import Deposit from './Components/Deposit';
-import History from './Components/History';
-import Transfer from './Components/Transfer';
-import Withdraw from './Components/Withdraw';
+
+import CreateUser from './Components/Operations/CreateUser';
+import DeleteUser from './Components/Operations/DeleteUser';
+import Deposit from './Components/Operations/Deposit';
+import History from './Components/Operations/History';
+import Transfer from './Components/Operations/Transfer';
+import Withdraw from './Components/Operations/Withdraw';
+import Landing from './Components/Landingpage/Landing';
+import EmpLogin from './Components/LoginsandModes/EmpLogin';
+import EmpInterface from './Components/LoginsandModes/EmpInterface';
+import AccHolderLogin from './Components/LoginsandModes/AccHolderLogin';
 function App() {
  
 
@@ -14,7 +18,10 @@ function App() {
    <>
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Landing/>}/>
+      <Route path='/employeelogin' element={<EmpLogin/>}/>
+      <Route path='/accholderlogin' element={<AccHolderLogin/>}/>
+      <Route path='/empdash' element={<EmpInterface/>}/>
       <Route path='/createuser' element={<CreateUser/>}/>
       <Route path='/deleteuser' element={<DeleteUser/>}/>
       <Route path='/deposit' element={<Deposit/>}/>

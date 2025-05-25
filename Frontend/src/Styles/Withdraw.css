@@ -1,4 +1,4 @@
-.wdraw{
+/* .wdraw{
     background-color: black;
     color:white;
     display:flex;
@@ -67,4 +67,90 @@
     place-items: center;
     width:100%;
   }
+   */
+
+   .wdraw{
+    background-color: black;
+    color:white;
+    padding-top: 9vh;
+    height: max-content;
+}
+.wdraw-main {
+    color:#ffffff;
+    opacity: 0.8;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50vw;
+    height:43%;
+    margin: 50px auto;
+    box-shadow: 0 1px 4px #ff6f00;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .wdraw-div{
+      height: 84vh;
+    display: grid;
+    place-items: center;
+  }
+  .wdraw-main p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
   
+  .wdraw-main input {
+    background-color: #000000;
+    border: 0.5px solid rgba(255, 255, 255, 0.237);
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .wdraw-main input::placeholder {
+    color: #bbb;
+  }
+  
+  .wdraw-main input:hover {
+    border-color: #ff9900;
+    /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
+  }
+  .wdraw-main input:focus {
+    border-color: #ff9900;
+    /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
+  }
+  
+
+  .wdraw-submit {
+  background-color: #ff6f00; 
+  width:90px;
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.wdraw-submit:hover {
+  background-color: #bc5404;
+  transform: translateY(-2px);
+}
+
+.wdraw-submit:active {
+  transform: translateY(1px);
+}
+  @media (max-width:750px)
+  {
+    .wdraw-main{
+      width:70vw;
+    }
+  }
+  
+

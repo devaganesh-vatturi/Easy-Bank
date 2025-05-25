@@ -1,24 +1,35 @@
+
+  .history-hero{
+    height:max-content;
+    margin-bottom: 10px;
+    width:60%;
+    text-align: center;
+    margin:auto;
+  }
+  
 .history{
     background-color: black;
     color:white;
-    min-height:100vh;
-    display: flex;
-    flex-direction: column;
+    padding-top: 9vh;
+    height: max-content;
 }
 .history-main {
- 
-    color:#ff6f00;
+    color:#ffffff;
+    opacity: 0.8;
     padding: 20px;
     border-radius: 8px;
     width: 40vw;
-    height:25vh;
     margin: 50px auto;
-    box-shadow: 0 4px 10px #ff6f00;
+    box-shadow: 0 1px 4px #ff6f00;
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-  
+  .history-div{
+    min-height: 77vh;
+     height: max-content;
+
+  }
   .history-main p {
     margin: 0;
     font-size: 16px;
@@ -27,7 +38,7 @@
   
   .history-main input {
     background-color: #000000;
-    border: 1px solid #f5a623;
+    border: 0.5px solid rgba(255, 255, 255, 0.237);
     color: white;
     padding: 8px;
     border-radius: 4px;
@@ -39,39 +50,43 @@
     color: #bbb;
   }
   
+  .history-main input:hover {
+    border-color: #ff9900;
+    /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
+  }
   .history-main input:focus {
     border-color: #ff9900;
-    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
   }
   
-  .history-submit{
-    background-color:#ff6f00;
-    color: black;
-    text-align: center;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width:20vw;
-    transition: 0.3s;
-    display: block; 
-  margin: 10px auto; 
-  }
-  
-  .history-submit:hover {
-    background-color:  #e16e15;
-    box-shadow: 0 0 10px rgba(255, 165, 0, 0.7);
-  }
-  .history-sub-div{
-    display: grid;
-    place-items: center;
-    width:100%;
-  }
-  .history-hero{
-    min-height: 5vh;
-    margin-bottom: 10px;
-    width:70%;
-    text-align: center;
-    /* border:2px solid white; */
-    margin:auto;
+
+  .history-submit {
+  background-color: #ff6f00; 
+  width:90px;
+  color: white;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: auto;
+}
+
+.history-submit:hover {
+  background-color: #bc5404;
+  transform: translateY(-2px);
+}
+
+.history-submit:active {
+  transform: translateY(1px);
+}
+  @media (max-width:750px)
+  {
+    .history-main{
+      width:70vw;
+    }
   }
   

@@ -1,0 +1,93 @@
+.hero{
+    width:100%;
+    height:92vh;
+    background-image: url("../assets/bg.jpg");
+    background-size: contain;
+    color: white;
+   display: grid;
+   place-items: center;
+   font-family: sans-serif;
+   font-weight: bold;
+  padding-top:9vh;
+}
+
+.hero-main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width:100%;
+}
+.hero-p{
+    margin-top:10px;
+    opacity: 0.6;
+    font-weight: 300;
+    width:45vw;
+}
+.hero-l1{
+    font-size: 3.5rem;
+    display: flex; 
+    
+}
+.hero-l1-start{
+    margin-right: 10px;
+}
+.hero-l1-end{
+    color:#ff6f00;
+}
+.hero-img{
+    background-image: url('../assets/bankimg.png');
+    background-size:cover;
+    height:300px;
+    width:300px;
+}
+.hero-l2{
+    display: flex;
+    font-size: 2rem;
+}
+.hero-l2-start{
+    margin-right:10px;
+}
+.hero-l2-end{
+    color: #ff6f00;
+}
+@media (max-width:1050px){
+    .hero-main{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        height:100%;
+        font-size:2rem;
+    }
+    .hero-p{
+        font-size: 1rem;
+        width:70vw;
+    }
+    .hero-l1{
+        font-size: 3rem; 
+        
+    }
+    .hero{
+        background-size: cover;
+    }
+}
+@media (max-width:650px)
+{
+
+.hero-l1{
+    font-size: 2rem; 
+    
+}
+ .hero-p{
+        font-size: 0.9rem;
+        width:90vw;
+    }
+}
+@media (max-width:420px)
+{
+
+.hero-l1{
+    font-size: 1.5rem; 
+    
+}
+}

@@ -1,0 +1,44 @@
+.service-user
+{
+    width:79vw;
+    background-color: black;
+
+}
+.service-main{
+    background-color: black;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.service-emp{
+    width:79vw;
+    background-color: black;
+}
+.service-main-txt{
+    text-decoration: underline;
+    font-family: sans-serif;
+    color:#ff6f00;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom:50px;
+}
+.service-ser-txt{
+    font-family: sans-serif;
+    color:#ffffff;
+    opacity: 0.9;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom:50px;
+}
+.service-emp-txt{
+
+   
+    margin-top:30px;
+    font-family: sans-serif;
+    opacity: 0.9;
+    color:#ffffff;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom:50px;
+}

@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React,{useState} from 'react'
-import Header from './Header';
-import Footer from './Footer';
-import '../Styles/CreateUser.css'
+import InHeader from '../LoginsandModes/InHeader';
+import Footer from '../Landingpage/Footer';
+import '../../Styles/CreateUser.css'
 import {jsPDF} from 'jspdf';
 export default function CreateUser() {
   const [Userdata, setUser] = useState({
@@ -51,7 +51,8 @@ export default function CreateUser() {
 }
   return (
     <div className='create'>
-      <Header/>
+      <InHeader/>
+      <div className='create-div'>
       <div className='create-main'>
       <p>Enter user name:</p>
       <input type="text" placeholder='User name' name="name" onChange={handleChange}/>
@@ -61,11 +62,11 @@ export default function CreateUser() {
       <input type="number" placeholder='Balance' name="balance"onChange={handleChange}/>
       <p>Enter address:</p>
       <input type="text" placeholder='Address' name="address" onChange={handleChange}/>
-      <div className='create-sub-div'>
-      <p className="create-submit" onClick={handleSubmit}>Submit</p>
+      <center className="create-submit" onClick={handleSubmit}>Submit</center>
       </div>
+     
       </div>
-      <Footer/>
+       <Footer/>
     </div>
   )
 }

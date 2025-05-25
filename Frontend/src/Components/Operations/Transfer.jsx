@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
-import '../Styles/Transfer.css'
+import Footer from '../Landingpage/Footer';
+import '../../Styles/Transfer.css'
+import InHeader from '../LoginsandModes/InHeader';
 export default function Transfer() {
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
 
@@ -35,7 +35,8 @@ export default function Transfer() {
   }
   return (
     <div className='transfer'>
-      <Header/>
+      <InHeader/>
+      <div className='transfer-div'>
       <div className='transfer-main'>
      <p>Enter accno:</p>
       <input type="number" placeholder='Acc no' onChange={handleChange} name="accno" />
@@ -43,8 +44,7 @@ export default function Transfer() {
       <input type="number" placeholder='Acc no' onChange={handleChange} name="taccno" />
       <p>Enter amount:</p>
       <input type="number" placeholder='Balance' onChange={handleChange} name="amount" />
-      <div className='transfer-sub-div'> 
-      <p onClick={handleSubmit}  className='transfer-submit'>Submit</p>
+     <center className="transfer-submit" onClick={handleSubmit}>Submit</center>
       </div>
       </div>
       <Footer/>

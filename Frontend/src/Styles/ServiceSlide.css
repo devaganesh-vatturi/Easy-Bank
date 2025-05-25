@@ -1,0 +1,62 @@
+.ser-usr-main{
+    width:100%;
+}
+.ser-usr-div{
+    position: relative;
+    width:100%;
+    height:350px;
+    box-shadow: 0px 4px 10px #ff6f00;
+}
+.ser-usr-img{
+    width: 100%;
+    height:100%;
+    object-fit:contain;
+    border-radius: 0.75rem; 
+}
+.ser-usr-cls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0); /* bg-opacity-40 */
+    border-radius: 0.75rem; /* rounded-xl */
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    padding-left: 1rem;  /* px-4 */
+    padding-right: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ser-usr-cls:hover {
+    background-color: rgba(0, 0, 0, 0.3); 
+  }
+
+  .ser-usr-imtxt {
+    color: rgb(255, 255, 255);  
+    opacity:0.6;            
+    text-align: center;          
+    font-size: 1.3rem;       
+    font-weight: 200;         
+    margin-top: 2.5rem;      
+    margin-bottom: 0.5rem;      
+  }
+  .custom-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .custom-pagination .swiper-pagination-bullet {
+    background-color: rgb(255, 255, 255);       
+    opacity: 1;      
+  }
+  .custom-pagination .swiper-pagination-bullet-active {
+     background-color:#ff6f00;     
+  }
+  
+  
+  
+  

@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import axios from 'axios';
-import Header from './Header';
-import Footer from './Footer';
-import '../Styles/DeleteUser.css'
+import Header from '../Landingpage/Header';
+import Footer from '../Landingpage/Footer';
+import '../../Styles/DeleteUser.css'
 export default function DeleteUser() {
   const [user, setUser] = useState({accno:0});
   const handleChange=(e)=>{

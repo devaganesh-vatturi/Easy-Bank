@@ -1,0 +1,64 @@
+.ser-emp-main{
+    width:100%;
+
+}
+.ser-emp-div{
+    position: relative;
+    box-shadow: 0px 4px 10px #ff6f00;
+    width:100%;
+    height:350px;
+}
+.ser-emp-img{
+    width: 100%;
+    height:100%;
+    object-fit: contain;
+    border-radius: 0.75rem; 
+    box-shadow: 0.75rem;
+}
+.ser-emp-cls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0); 
+    border-radius: 0.75rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-end;
+    padding-left: 1rem;  
+    padding-right: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .ser-emp-cls:hover {
+    background-color: rgba(0, 0, 0, 0.2); 
+  }
+
+  .ser-emp-imtxt {
+    color: rgb(255, 255, 255); 
+    opacity:0.8;              
+    text-align: center;          
+    font-size: 1.3rem;       
+    font-weight: 200;     
+    margin-top: 2.5rem;       
+    margin-bottom: 0.5rem;    
+  }
+  .emp-custom-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  .emp-custom-pagination .swiper-pagination-bullet {
+    background-color: rgb(255, 255, 255);       
+    opacity: 1;      
+  }
+  .emp-custom-pagination .swiper-pagination-bullet-active {
+     background-color:#ff6f00;     
+  }
+  
+  
+  
+  
