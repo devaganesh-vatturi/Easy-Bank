@@ -37,13 +37,10 @@ export default function Header({onServiceClick,onLoginClick,onQuestionClick,Mode
         </div>
           
       <div className={`head-line ${menuOpen ? 'show' : ''}`}>
-        
-         <>
        <p className='head-line-p' onClick={onServiceClick}>Services</p>
        <p className='head-line-p' onClick={onLoginClick}>Login</p>
         <p className='head-line-p' onClick={onQuestionClick}>Questions</p>
        <p className='head-line-p'>About us</p>
-       </>
          
       </div>
       </>

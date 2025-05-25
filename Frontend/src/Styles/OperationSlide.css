@@ -8,6 +8,11 @@
     width:100%;
     height:350px;
 }
+@media (max-width:650px)
+{.ser-emp-div{
+  box-shadow:none;
+}
+}
 .ser-emp-img{
     width: 100%;
     height:100%;
