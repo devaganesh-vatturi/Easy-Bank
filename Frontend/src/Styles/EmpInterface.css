@@ -54,14 +54,14 @@
 }
   .empin-img{
     margin-right: 30px;
-    border-radius: 50%;
-    height:180px;
+    /* border-radius: 50%; */
+    height:90%;
     width:180px;
   }
   .img1,.img2,.img3,.img4,.img5,.img6{
    
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:contain;
   }
   .img1{
     background-image: url('../assets/createuser.jpg');

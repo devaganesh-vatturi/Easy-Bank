@@ -55,13 +55,13 @@
   .accin-img{
     margin-right: 30px;
     /* border-radius: 50%; */
-    height:180px;
+    height:95%;
     width:180px;
   }
   .aimg1,.aimg2,.aimg3,.aimg4,.aimg5,.aimg6{
    
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size:contain;
   }
   .aimg1{
     background-image: url('../assets/accountdetails.jpg');
