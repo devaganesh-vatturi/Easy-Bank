@@ -168,3 +168,61 @@ exports.deleteUser=async(req,res)=>{
         res.status(500).send("error occur");;
     }
 }
+
+exports.userLogin=async(req,res)=>{
+    console.log(req.body);
+    const {accno,phno}=req.body;
+    try{
+     const userobj= await user.findOne({accno:accno});
+     if(userobj)
+     {
+        console.log(phno);
+        
+        if(phno===userobj.phno)
+        {
+            return res.status(200).json({success:true});
+        }
+        return res.status(401).json({success:false,message:"incorrect phno"});
+    }
+    return res.status(404).json({success:false,message:"user not found"});
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+}
+
+exports.checkBalance=async(req,res)=>{
+   const{accno}=req.body;
+   console.log(accno);
+   try{
+    const obj=await user.findOne({accno:accno});
+    if(obj)
+    {
+        const balance=obj.balance;
+        return res.status(200).json({success:true,balance:balance});
+    }
+    return res.status(404).json({success:false,message:"account number not found"});
+   }
+   catch(e)
+   {
+
+   }
+}
+
+exports.selfDetails=async(req,res)=>{
+    const {accno}=req.body;
+    console.log(accno);
+    try{
+      const obj= await user.findOne({accno:accno});
+      if(obj)
+      {
+        return res.status(200).json({success:true,data:obj});
+      }
+      return res.status(400).json({success:false});
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+}

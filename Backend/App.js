@@ -12,8 +12,9 @@ if (!MONGO_URL) {
     process.exit(1);
 }
 const user=require('./Routes/userRoute.js');
+const employee=require('./Routes/employeeRoute.js');
 app.use("/bank",user);
-
+app.use("/bank",employee);
 app.get(['/', '/bank'], (req, res) => {
     try{
     res.sendFile(__dirname + '/index.html');
