@@ -33,8 +33,6 @@ export default function CreateUser() {
   };
   const handleSubmit =async(e)=>{
       console.log(Userdata);
-    
-      
       try{
         const result= await axios.post("https://easybank-qgjy.onrender.com/bank/createuser",Userdata);
         if(result.data.success)
@@ -52,6 +50,7 @@ export default function CreateUser() {
   return (
     <div className='create'>
       <InHeader/>
+      <center className='create-head-txt'>Create User</center>
       <div className='create-div'>
       <div className='create-main'>
       <p>Enter user name:</p>

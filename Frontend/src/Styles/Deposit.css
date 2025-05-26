@@ -18,7 +18,7 @@
     gap: 12px;
   }
   .deposit-div{
-      height: 84vh;
+      height: 72vh;
       display: grid;
       place-items: center;
   }
@@ -74,6 +74,12 @@
 
 .deposit-submit:active {
   transform: translateY(1px);
+}
+.deposit-head-txt{
+  color:white;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 40px;
 }
   @media (max-width:750px)
   {

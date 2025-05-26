@@ -1,4 +1,4 @@
-.empin-main{
+.accin-main{
     background-color: black;
     color:#ff6f00;
     width:100%;
@@ -10,11 +10,11 @@
    flex-direction: column;
    align-items: center;
 }
-.empin{
+.accin{
   padding-top:10vh;
   font-family: sans-serif;
 }
-.empin-div{
+.accin-div{
     box-shadow: 1px 2px 4px 1px #ff6f00;
     /* border: 2px solid white; */
     width:70%;
@@ -26,70 +26,70 @@
     justify-content: space-between;
     align-items: center;
 }
-.empin-div:hover{
+.accin-div:hover{
     transform:scale(1.02);
      cursor: pointer;
 }
-.empin-h1{
+.accin-h1{
   font-size: 2rem;
   padding-top: 40px;
   color: #ffffff;
   font-weight: bold;
 
 }
-.empin-hero-t1{
+.accin-hero-t1{
   font-size: 1.8rem;
   color:white;
   opacity: 0.9;
   font-weight: bold;
 }
-.empin-hero-t2{
+.accin-hero-t2{
   font-size:0.9rem;
   color:white;
   opacity: 0.6;
   font-weight: bold;
 }
-#empin-hero{
+#accin-hero{
  margin-left:50px;
 }
-  .empin-img{
+  .accin-img{
     margin-right: 30px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     height:180px;
     width:180px;
   }
-  .img1,.img2,.img3,.img4,.img5,.img6{
+  .aimg1,.aimg2,.aimg3,.aimg4,.aimg5,.aimg6{
    
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
   }
-  .img1{
-    background-image: url('../assets/createuser.jpg');
+  .aimg1{
+    background-image: url('../assets/accountdetails.jpg');
   }
-  .img2{
+  .aimg2{
     background-image: url('../assets/deposit.jpg');
   }
-  .img3{
+  .aimg3{
     background-image: url('../assets/withdraw.jpg');
   }
-  .img4{
+  .aimg4{
     background-image: url('../assets/transfer.jpg');
   }
-  .img5{
+  .aimg5{
     background-image: url('../assets/history.jpg');
   }
-  .img6{
+  .aimg6{
     background-image: url('../assets/checkbalance.jpg');
   }
 
   @media (max-width: 768px) {
-    .empin-img{
+    .accin-img{
       background-size: contain;
     }
-    .empin-h1{
+    .accin-h1{
       font-size: 1.6rem;
     }
-    .empin-hero-t1{
+    .accin-hero-t1{
       font-size: 1.4rem;
     }
   }

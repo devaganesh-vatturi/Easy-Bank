@@ -2,10 +2,11 @@ import React from 'react'
 import '../../Styles/Login.css'
 export default function Login() {
   const goAccholder =()=>{
-    window.location.href='/employeelogin';
+  
+     window.location.href='/accholderlogin';
   }
    const goEmployee =()=>{
-    window.location.href='/accholderlogin';
+      window.location.href='/employeelogin';
   }
   return (
     <div className='log'>

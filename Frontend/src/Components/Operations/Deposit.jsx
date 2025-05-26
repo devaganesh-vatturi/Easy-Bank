@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-import Header from '../Landingpage/Header';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/Deposit.css'
 import InHeader from '../LoginsandModes/InHeader';
@@ -32,6 +31,7 @@ export default function Deposit() {
   return (
     <div className='deposit'>
       <InHeader/>
+      <center className='deposit-head-txt'>Deposit</center>
      <div className='deposit-div'>
       <div className='deposit-main'>
       <p>Enter accno:</p>

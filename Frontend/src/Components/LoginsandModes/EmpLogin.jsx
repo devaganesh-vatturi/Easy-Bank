@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
-
+import axios from 'axios';
 const EmpLogin = () => {
   const [formData, setFormData] = useState({
-    employeeId: '',
+    employeeId:"",
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -16,14 +16,33 @@ const EmpLogin = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+     [name]: name === "employeeId" ? Number(value) : value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log('Login Data:', formData);
-    // Add login logic here
+    try{
+      const response=await axios.post("https://easybank-qgjy.onrender.com/bank/emplogin",formData);
+      if(response.data.success)
+      {
+        alert('successfully logined');
+        window.location.href='/empdash';
+      }
+    }
+    catch(e)
+    {
+      if(e.response)
+      {
+        alert('invalid credientials');
+      }
+      else{
+        console.log(e);
+      }
+    }
+
+    
   };
 
   return (
@@ -31,7 +50,7 @@ const EmpLogin = () => {
     <Header Mode="Login" />
     <div className="login-container">
         
-      <form className="login-form" onSubmit={handleSubmit}>
+      <div className="login-form" >
         <h2>Employee Login</h2>
 
         <input
@@ -57,10 +76,10 @@ const EmpLogin = () => {
   </span>
 </div>
 
-        <button type="submit">
+        <button onClick={handleSubmit}>
           Login
         </button>
-      </form>
+      </div>
     </div>
     </>
   );

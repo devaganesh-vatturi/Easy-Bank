@@ -1,37 +1,39 @@
-   .transfer{
+
+.bal{
     background-color: black;
     color:white;
     padding-top: 9vh;
     height: max-content;
 }
-.transfer-main {
+.bal-main {
     color:#ffffff;
     opacity: 0.8;
     padding: 20px;
     border-radius: 8px;
-    width: 50vw;
+    width: 40vw;
+    height:35%;
     margin: 50px auto;
     box-shadow: 0 1px 4px #ff6f00;
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-  .transfer-div{
-      height: 82vh;
+  .bal-div{
+      height: 83vh;
 
   }
-  .transfer-main p {
+  .bal-main p {
     margin: 0;
     font-size: 16px;
     font-weight: bold;
   }
-  .transfer-p{
-    font-size: 2rem;
+  .bal-p{
     color:white;
+    font-size: 2rem;
     font-weight: bold;
-    padding-top:20px;
+    padding-top: 40px;
   }
-  .transfer-main input {
+  .bal-main input {
     background-color: #000000;
     border: 0.5px solid rgba(255, 255, 255, 0.237);
     color: white;
@@ -41,21 +43,21 @@
     transition: 0.3s;
   }
   
-  .transfer-main input::placeholder {
+  .bal-main input::placeholder {
     color: #bbb;
   }
   
-  .transfer-main input:hover {
+  .bal-main input:hover {
     border-color: #ff9900;
     /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
   }
-  .transfer-main input:focus {
+  .bal-main input:focus {
     border-color: #ff9900;
     /* box-shadow: 0 0 5px rgba(255, 165, 0, 0.5); */
   }
   
 
-  .transfer-submit {
+  .bal-submit {
   background-color: #ff6f00; 
   width:90px;
   color: white;
@@ -70,17 +72,21 @@
   margin: auto;
 }
 
-.transfer-submit:hover {
+.bal-submit:hover {
   background-color: #bc5404;
   transform: translateY(-2px);
 }
-
-.transfer-submit:active {
+.bal-bal{
+  font-weight: bold;
+  font-size:1.4rem;
+  opacity: 0.9;
+}
+.bal-submit:active {
   transform: translateY(1px);
 }
   @media (max-width:750px)
   {
-    .transfer-main{
+    .bal-main{
       width:70vw;
     }
   }

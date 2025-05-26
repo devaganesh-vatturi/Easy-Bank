@@ -17,7 +17,7 @@
     gap: 12px;
   }
   .create-div{
-      height: 77vh;
+      height: 65vh;
 
   }
   .create-main p {
@@ -51,7 +51,7 @@
   
 
   .create-submit {
-  background-color: #ff6f00; /* Green */
+  background-color: #ff6f00; 
   width:90px;
   color: white;
   padding: 10px 22px;
@@ -72,6 +72,12 @@
 
 .create-submit:active {
   transform: translateY(1px);
+}
+.create-head-txt{
+  color:white;
+  font-size:2rem;
+  font-weight: bold;
+  padding-top: 40px;
 }
   @media (max-width:750px)
   {

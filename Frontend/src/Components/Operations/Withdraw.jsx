@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import axios from 'axios';
-import Header from '../Landingpage/Header';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/Withdraw.css'
 import InHeader from '../LoginsandModes/InHeader';
@@ -37,6 +36,7 @@ export default function Withdraw() {
   return (
     <div className='wdraw'>
       <InHeader/>
+      <center className='wdraw-head-txt'>With Draw</center>
       <div className='wdraw-div'>
       <div className='wdraw-main'>
       <p>Enter accno:</p>

@@ -1,12 +1,16 @@
-import React, {useState}from 'react';
+import React, {useEffect, useState}from 'react';
 import axios from 'axios';
 import PrintList from '../PrintList';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/History.css';
+import { useLocation } from 'react-router-dom';
 import {jsPDF} from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import InHeader from '../LoginsandModes/InHeader';
 export default function History() {
+  const location=useLocation();
+  const qp=new URLSearchParams(location.search);
+  const accno=qp.get('accno');
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
   const handleChange=(e)=>{
@@ -14,7 +18,12 @@ export default function History() {
     const {name,value}=e.target;
     setUser({...user,[name]:value});
   }
-
+useEffect(()=>{
+  if(accno)
+  {
+    setUser({accno:accno});
+  }
+},[accno]);
   const generatePDF = (data) => {
     const doc = new jsPDF();
     doc.setFontSize(18);
@@ -78,9 +87,10 @@ export default function History() {
     <div className='history'>
       <InHeader/>
       <div className='history-div'>
+        <center className='history-p'>History</center>
       <div className='history-main'>
       <p>Enter acc no</p>
-      <input type="text" name="accno" onChange={handleChange} />
+      <input type="text" name="accno" value={accno} onChange={handleChange} />
     <center className="history-submit" onClick={handleSubmit}>Submit</center>
        
       
@@ -89,7 +99,7 @@ export default function History() {
          {history.length > 0 ?( history.map((obj,index)=>(
            <PrintList accno={obj.accno} amount={obj.amount}balance={obj.balance} description={obj.description}
            type={obj.type} time={obj.time}/>
-          ))):(<p>no transaction exists</p>)
+          ))):(<p></p>)
         }
         </div>
         </div>

@@ -7,7 +7,7 @@ export default function EmpInterface() {
     window.location.href='/createuser';
   }
   const godeleteuser=(e)=>{
-    window.location.href='/deleteuser';
+    window.location.href='/checkbalance';
   }
   const godeposit=(e)=>{
     window.location.href='/deposit';
