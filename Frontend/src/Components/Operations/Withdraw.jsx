@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/Withdraw.css';
+import Loading from '../Operations/Loading';
 import DialougeBox from '../DialougeBox';
 import InHeader from '../LoginsandModes/InHeader';
 export default function Withdraw() {
@@ -13,8 +14,10 @@ export default function Withdraw() {
   }
    const [showMessage, setShowMessage] = useState(false);
    const[content,setContent]=useState("");
+     const[isLoading,setLoading]=useState(false);
   const handleSubmit =async(e)=>{
     console.log(user);
+     setLoading(true);
     if(user.accno!=0 && user.amount > 0)
     {
       try{
@@ -38,6 +41,10 @@ export default function Withdraw() {
         setUser({accno:0,amount:0});
         }}
       }
+        finally
+    {
+      setLoading(false);
+    }
     }
     else{
         setContent(`Enter a valid data`);
@@ -66,6 +73,9 @@ export default function Withdraw() {
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
        ) }
+        {
+                   isLoading && <Loading data={"Loading....."}/>
+             }
       <Footer/>
       </div>
   )

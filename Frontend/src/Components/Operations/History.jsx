@@ -6,6 +6,7 @@ import '../../Styles/History.css';
 import DialougeBox from '../DialougeBox';
 import { useLocation } from 'react-router-dom';
 import {jsPDF} from 'jspdf';
+import Loading from '../Operations/Loading';
 import autoTable from 'jspdf-autotable';
 import InHeader from '../LoginsandModes/InHeader';
 export default function History() {
@@ -14,8 +15,9 @@ export default function History() {
   const accno=qp.get('accno');
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
-   const [showMessage, setShowMessage] = useState(false);
-      const[content,setContent]=useState(""); 
+  const [showMessage, setShowMessage] = useState(false);
+  const[isLoading,setLoading]=useState(false);
+  const[content,setContent]=useState(""); 
   const handleChange=(e)=>{
     e.preventDefault();
     const {name,value}=e.target;
@@ -63,6 +65,7 @@ useEffect(()=>{
     doc.save('transaction_report.pdf');
   };
   const handleSubmit =async(e)=>{
+     setLoading(true);
     if(user.accno!=0)
     {
       try{
@@ -90,6 +93,10 @@ useEffect(()=>{
         }
         
       }
+       finally
+    {
+      setLoading(false);
+    }
     }
     else{
       setContent(`Invalid data please reenter`);
@@ -126,6 +133,9 @@ useEffect(()=>{
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+       {
+          isLoading && <Loading data={"Loading....."}/>
+                } 
       <Footer/>
     </div>
   )

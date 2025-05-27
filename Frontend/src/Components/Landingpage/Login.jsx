@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import '../../Styles/Login.css'
 export default function Login() {
-    const [showMessage, setShowMessage] = useState(false);
+    
   const goAccholder =()=>{
   
      window.location.href='/accholderlogin';

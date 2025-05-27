@@ -11,7 +11,7 @@ const Questions = () => {
     },
     {
       question: 'How to access employee mode ?',
-      answer: 'Login employee with credientials id: 0919 password: 0919 and access employee mode',
+      answer: 'Login employee with credientials id: 12345 password: 12345 and access employee mode',
     },
     {
       question: 'Difference between both modes',

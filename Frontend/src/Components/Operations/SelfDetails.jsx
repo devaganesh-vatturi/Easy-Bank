@@ -4,6 +4,7 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import '../../Styles/SelfDetails.css';
 import axios from 'axios';
 import Footer from '../Landingpage/Footer';
+import Loading from './Loading';
 export default function SelfDetails() {
     const location= useLocation();
     const qp= new URLSearchParams(location.search);
@@ -29,7 +30,7 @@ export default function SelfDetails() {
 
     if(!user)
     {
-      return <p>Loading {accno} details .....</p>
+      return <Loading data={`Loading details of ${accno}`}/>
     }
   return (
     < div className='self'>

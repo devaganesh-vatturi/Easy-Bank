@@ -3,6 +3,7 @@ import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
 import axios from 'axios';
 import DialougeBox from '../DialougeBox';
+import Loading from '../Operations/Loading';
 const EmpLogin = () => {
   const [formData, setFormData] = useState({
     employeeId:"",
@@ -12,6 +13,7 @@ const EmpLogin = () => {
   const [showMessage, setShowMessage] = useState(false);
   const[redirect,setRedirect]=useState(false);
   const[content,setContent]=useState("");
+  const[isLoading,setLoading]=useState(false);
   const togglePassword = () => {
   setShowPassword((prev) => !prev);
 };
@@ -26,6 +28,7 @@ const EmpLogin = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     console.log('Login Data:', formData);
     try{
       const response=await axios.post("https://easybank-qgjy.onrender.com/bank/emplogin",formData);
@@ -48,6 +51,10 @@ const EmpLogin = () => {
       else{
         console.log(e);
       }
+    }
+    finally
+    {
+      setLoading(false);
     }
 
     
@@ -93,12 +100,16 @@ const EmpLogin = () => {
         <button onClick={handleSubmit}>
           Login
         </button>
+        <p className='login-pwd-key'>Emp id: 12345, Pwd: 12345</p>
       </div>
        {showMessage && (
         <DialougeBox onClose={handleClose}>
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+       {
+            isLoading && <Loading data={"Loading....."}/>
+          } 
     </div>
     </>
   );

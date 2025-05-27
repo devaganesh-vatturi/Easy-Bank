@@ -4,6 +4,7 @@ import InHeader from '../LoginsandModes/InHeader';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/CreateUser.css'
 import {jsPDF} from 'jspdf';
+import Loading from '../Operations/Loading';
 import DialougeBox from '../DialougeBox';
 export default function CreateUser() {
   const [Userdata, setUser] = useState({
@@ -16,6 +17,7 @@ export default function CreateUser() {
   }
     const [showMessage, setShowMessage] = useState(false);
     const[content,setContent]=useState("");
+     const[isLoading,setLoading]=useState(false);
   const generatePDF = (object) => {
     const doc = new jsPDF();
   
@@ -36,6 +38,7 @@ export default function CreateUser() {
   };
   const handleSubmit =async(e)=>{
       console.log(Userdata);
+       setLoading(true);
       try{
         const result= await axios.post("https://easybank-qgjy.onrender.com/bank/createuser",Userdata);
         if(result.data.success)
@@ -51,6 +54,9 @@ export default function CreateUser() {
       {
          setContent("Inalid data try again");
          setShowMessage(true);
+      }
+      finally{
+        setLoading(false);
       }
 }
   const handleClose=()=>{
@@ -80,6 +86,9 @@ export default function CreateUser() {
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+       {
+                  isLoading && <Loading data={"Loading....."}/>
+                }
        <Footer/>
     </div>
   )

@@ -3,6 +3,7 @@ import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
 import axios from 'axios';
 import DialougeBox from '../DialougeBox';
+import Loading from '../Operations/Loading';
 const AccHolderLogin = () => {
   const [formData, setFormData] = useState({
     accno: '',
@@ -11,6 +12,7 @@ const AccHolderLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
     const[redirect,setRedirect]=useState(false);
+    const[isLoading,setLoading]=useState(false);
     const[content,setContent]=useState("");
   const togglePassword = () => {
   setShowPassword((prev) => !prev);
@@ -26,6 +28,7 @@ const AccHolderLogin = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     console.log('Login Data:', formData);
    try{
       const response=await axios.post("https://easybank-qgjy.onrender.com/bank/userlogin",formData);
@@ -38,6 +41,7 @@ const AccHolderLogin = () => {
     }
     catch(error)
     {
+     
       if (error.response) {
       if (error.response.status === 401) {
         setContent(`Invalid Phone number!`);
@@ -52,6 +56,9 @@ const AccHolderLogin = () => {
     }
   }
 }
+finally{
+   setLoading(false);
+}
   
   };
   const handleClose=()=>{
@@ -61,6 +68,7 @@ const AccHolderLogin = () => {
             }
            
   }
+
   return (
     <>
     <Header Mode="Login" />
@@ -102,7 +110,11 @@ const AccHolderLogin = () => {
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+      {
+      isLoading && <Loading data={"Loading....."}/>
+    }
     </div>
+    
     </>
   );
 };

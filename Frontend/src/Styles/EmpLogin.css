@@ -7,7 +7,8 @@ body {
 .login-container {
     background-image: url("../assets/bg.jpg");
     background-size: contain;
-  height: 90vh;
+  min-height: 90vh;
+  height: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,11 +46,15 @@ body {
   margin-bottom: 30px;
   width: 260px;
 }
+.login-pwd-key{
+  color:white;
+  opacity: 0.8;
+  margin-top:10px;
+}
 
 .login-form input::placeholder {
   color: #ccc;
 }
-
 .login-form button {
   background-color: #ff6f00;
   color: #111;

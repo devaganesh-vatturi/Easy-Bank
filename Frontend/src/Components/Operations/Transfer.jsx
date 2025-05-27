@@ -4,6 +4,7 @@ import axios from 'axios';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/Transfer.css';
 import DialougeBox from '../DialougeBox';
+import Loading from '../Operations/Loading';
 import InHeader from '../LoginsandModes/InHeader';
 export default function Transfer() {
   const location=useLocation();
@@ -11,7 +12,8 @@ export default function Transfer() {
   const accno=qp.get('accno');
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
   const [showMessage, setShowMessage] = useState(false);
-    const[content,setContent]=useState("");
+  const[isLoading,setLoading]=useState(false);
+  const[content,setContent]=useState("");
  useEffect(()=>{
   if(accno)
  {   
@@ -24,6 +26,7 @@ export default function Transfer() {
   }
 
   const handleSubmit = async(e)=>{
+    setLoading(true);
     if(user.accno !=0 && user.taccno !=0 && user.amount >0)
     {
       try{
@@ -48,6 +51,10 @@ export default function Transfer() {
           }
         }
       }
+    finally
+    {
+      setLoading(false);
+    }
     }
     else{
       setContent(`Invalid Data, please enter valid data`);
@@ -79,6 +86,9 @@ export default function Transfer() {
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+        {
+           isLoading && <Loading data={"Loading....."}/>
+                } 
       <Footer/>
     </div>
   )

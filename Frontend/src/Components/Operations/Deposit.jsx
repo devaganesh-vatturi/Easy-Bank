@@ -4,6 +4,7 @@ import Footer from '../Landingpage/Footer';
 import '../../Styles/Deposit.css'
 import InHeader from '../LoginsandModes/InHeader';
 import DialougeBox from '../DialougeBox';
+import Loading from '../Operations/Loading';
 export default function Deposit() {
   const [user, setUser] = useState({accno:0,amount:0});
   const handleChange=(e)=>{
@@ -12,7 +13,9 @@ export default function Deposit() {
   }
    const [showMessage, setShowMessage] = useState(false);
    const[content,setContent]=useState("");
+     const[isLoading,setLoading]=useState(false);
   const handleSubmit =async(e)=>{
+     setLoading(true);
     if( user.accno!=0 && user.amount !=0)
     {
       try{
@@ -37,6 +40,10 @@ export default function Deposit() {
         }
         }
       }
+      finally
+      {
+      setLoading(false);
+    }
     }
     else{
       alert("invalid data");
@@ -64,6 +71,9 @@ export default function Deposit() {
          <p className='emp-box-p1'>{content}</p>
         </DialougeBox>
       )}
+        {
+         isLoading && <Loading data={"Loading....."}/>
+        } 
       <Footer/>
     </div>
   )
