@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import axios from 'axios';
 import Footer from '../Landingpage/Footer';
-import '../../Styles/Withdraw.css'
+import '../../Styles/Withdraw.css';
+import DialougeBox from '../DialougeBox';
 import InHeader from '../LoginsandModes/InHeader';
 export default function Withdraw() {
   const [user, setUser] = useState({accno:0,amount:0});
@@ -10,28 +11,42 @@ export default function Withdraw() {
     const {name,value}=e.target;
     setUser({...user,[name]:value});
   }
+   const [showMessage, setShowMessage] = useState(false);
+   const[content,setContent]=useState("");
   const handleSubmit =async(e)=>{
     console.log(user);
-    if(user.accno!=0 && user.amount !=0)
+    if(user.accno!=0 && user.amount > 0)
     {
       try{
         const result=await axios.post("https://easybank-qgjy.onrender.com/bank/withdraw",user);
         if(result.data.success)
         {
-          alert(`successfully debited new balance is ${result.data.balance}`)
-        }
-        else{
-          alert("insufficient balance");
+           setContent(`successfully debited new balance is ${result.data.balance}`);
+           setShowMessage(true);
+        setUser({accno:0,amount:0});
         }
       }
       catch(e)
       {
         console.log(e);
+         if(e.response)
+        {
+        if(e.response.status === 404)
+        {
+        setContent(`Account number Not found`);
+        setShowMessage(true);
+        setUser({accno:0,amount:0});
+        }}
       }
     }
     else{
-      alert("invalid data");
+        setContent(`Enter a valid data`);
+        setShowMessage(true);
     }
+  }
+  const handleClose=()=>{
+            setShowMessage(false);
+           
   }
   return (
     <div className='wdraw'>
@@ -40,12 +55,17 @@ export default function Withdraw() {
       <div className='wdraw-div'>
       <div className='wdraw-main'>
       <p>Enter accno:</p>
-      <input type="number" placeholder='Acc no' onChange={handleChange} name="accno" />
+      <input type="number" placeholder='Acc no' value={user.accno} onChange={handleChange} name="accno" />
       <p>Enter amount:</p>
-      <input type="number" placeholder='Amount' onChange={handleChange} name="amount" />
+      <input type="number" placeholder='Amount' value={user.amount} onChange={handleChange} name="amount" />
      <center className="wdraw-submit" onClick={handleSubmit}>Submit</center>
       </div>
       </div>
+      {showMessage && (
+       <DialougeBox onClose={handleClose}>
+         <p className='emp-box-p1'>{content}</p>
+        </DialougeBox>
+       ) }
       <Footer/>
       </div>
   )

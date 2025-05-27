@@ -2,15 +2,16 @@ import React,{useEffect, useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Landingpage/Footer';
-import '../../Styles/Transfer.css'
+import '../../Styles/Transfer.css';
+import DialougeBox from '../DialougeBox';
 import InHeader from '../LoginsandModes/InHeader';
 export default function Transfer() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
   const accno=qp.get('accno');
-  console.log(accno);
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
- 
+  const [showMessage, setShowMessage] = useState(false);
+    const[content,setContent]=useState("");
  useEffect(()=>{
   if(accno)
  {   
@@ -23,26 +24,40 @@ export default function Transfer() {
   }
 
   const handleSubmit = async(e)=>{
-    if(user.accno !=0 && user.taccno !=0 && user.amount !=0)
+    if(user.accno !=0 && user.taccno !=0 && user.amount >0)
     {
       try{
         const result= await axios.post("https://easybank-qgjy.onrender.com/bank/transfer",user);
         if(result.data.success)
         {
-          alert(`successfully transfered new balance is ${result.data.balance}`)
-        }
-        else{
-          alert("insufficient balance");
+          setContent(`successfully transfered new balance is ${result.data.balance}`);
+          setShowMessage(true);
+        setUser({accno:0,taccno:0,amount:0});
         }
       }
       catch(e)
       {
         console.log(e);
+        if(e.response)
+        {
+          if(e.response.status === 401)
+          {
+            setContent(`Insufficient Balance`);
+            setShowMessage(true);
+            setUser({accno:0,taccno:0,amount:0});
+          }
+        }
       }
     }
     else{
-      console.log("invalid data");
+      setContent(`Invalid Data, please enter valid data`);
+          setShowMessage(true);
+        setUser({accno:0,taccno:0,amount:0});
     }
+  }
+   const handleClose=()=>{
+            setShowMessage(false);
+           
   }
   return (
     <div className='transfer'>
@@ -59,6 +74,11 @@ export default function Transfer() {
      <center className="transfer-submit" onClick={handleSubmit}>Submit</center>
       </div>
       </div>
+       {showMessage && (
+        <DialougeBox onClose={handleClose}>
+         <p className='emp-box-p1'>{content}</p>
+        </DialougeBox>
+      )}
       <Footer/>
     </div>
   )

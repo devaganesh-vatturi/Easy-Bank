@@ -3,6 +3,7 @@ import axios from 'axios';
 import PrintList from '../PrintList';
 import Footer from '../Landingpage/Footer';
 import '../../Styles/History.css';
+import DialougeBox from '../DialougeBox';
 import { useLocation } from 'react-router-dom';
 import {jsPDF} from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -13,6 +14,8 @@ export default function History() {
   const accno=qp.get('accno');
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
+   const [showMessage, setShowMessage] = useState(false);
+      const[content,setContent]=useState(""); 
   const handleChange=(e)=>{
     e.preventDefault();
     const {name,value}=e.target;
@@ -76,12 +79,27 @@ useEffect(()=>{
       }
       catch(e)
       {
-        console.log(e);
+        if(e.response)
+        {
+          if(e.response.status == 401)
+          {
+             setContent(`Invalid Account number`);
+          setShowMessage(true);
+        setUser({accno:0});
+          }
+        }
+        
       }
     }
     else{
-      alert("invalid data");
+      setContent(`Invalid data please reenter`);
+          setShowMessage(true);
+        setUser({accno:0});
     }
+  }
+    const handleClose=()=>{
+            setShowMessage(false);
+           
   }
   return (
     <div className='history'>
@@ -90,7 +108,7 @@ useEffect(()=>{
         <center className='history-p'>History</center>
       <div className='history-main'>
       <p>Enter acc no</p>
-      <input type="text" name="accno" value={accno} onChange={handleChange} />
+      <input type="text" name="accno" value={accno}  onChange={handleChange} />
     <center className="history-submit" onClick={handleSubmit}>Submit</center>
        
       
@@ -103,6 +121,11 @@ useEffect(()=>{
         }
         </div>
         </div>
+          {showMessage && (
+        <DialougeBox onClose={handleClose}>
+         <p className='emp-box-p1'>{content}</p>
+        </DialougeBox>
+      )}
       <Footer/>
     </div>
   )

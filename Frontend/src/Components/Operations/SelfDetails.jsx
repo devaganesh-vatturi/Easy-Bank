@@ -15,7 +15,7 @@ export default function SelfDetails() {
         const fetch = async()=>{    
         if(accno)
         {
-            const response= await axios.post('https://easybank-qgjy.onrender.com/selfdetails',{accno: Number(accno)});
+            const response= await axios.post('https://easybank-qgjy.onrender.com/bank/selfdetails',{accno: Number(accno)});
             if(response.data.success)
             {
                  Setuser(response.data.data);
@@ -25,10 +25,11 @@ export default function SelfDetails() {
         }
     }; 
     fetch();},
-    []);
+    [accno]);
+
     if(!user)
     {
-        return <p>Loading {accno} details .....</p>
+      return <p>Loading {accno} details .....</p>
     }
   return (
     < div className='self'>
@@ -54,7 +55,7 @@ export default function SelfDetails() {
     </div>
     
     </div>
-     <Footer/>s
+     <Footer/>
     </div>
   )
 }

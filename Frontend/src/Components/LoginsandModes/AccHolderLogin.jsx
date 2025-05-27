@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
 import axios from 'axios';
+import DialougeBox from '../DialougeBox';
 const AccHolderLogin = () => {
   const [formData, setFormData] = useState({
     accno: '',
     phno: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+    const[redirect,setRedirect]=useState(false);
+    const[content,setContent]=useState("");
   const togglePassword = () => {
   setShowPassword((prev) => !prev);
 };
@@ -24,23 +28,25 @@ const AccHolderLogin = () => {
     e.preventDefault();
     console.log('Login Data:', formData);
    try{
-      const response=await axios.post("http://localhost:5000/bank/userlogin",formData);
+      const response=await axios.post("https://easybank-qgjy.onrender.com/bank/userlogin",formData);
       if(response.data.success)
       {
-        alert('successfully logined');
-        window.location.href=`/accdash?accno=${formData.accno}`;
-      }
-      else{
-        alert('invalid information');
+        setContent(`successfully logged in! Welcome ${formData.accno}`);
+        setShowMessage(true);
+        setRedirect(true);
       }
     }
     catch(error)
     {
       if (error.response) {
       if (error.response.status === 401) {
-        alert('Invalid phno');
+        setContent(`Invalid Phone number!`);
+        setShowMessage(true);
+        setFormData({accno:"",phno:""});
       } else if (error.response.status === 404) {
-        alert('Account holder not found');
+       setContent(`Invalid Account number!`);
+        setShowMessage(true);
+        setFormData({accno:"",phno:""});
       } else {
         console.log('An error occurred: ' + error.response.status);
     }
@@ -48,7 +54,13 @@ const AccHolderLogin = () => {
 }
   
   };
-
+  const handleClose=()=>{
+            setShowMessage(false);
+            if(redirect){
+                 window.location.href=`/accdash?accno=${formData.accno}`;
+            }
+           
+  }
   return (
     <>
     <Header Mode="Login" />
@@ -83,7 +95,13 @@ const AccHolderLogin = () => {
         <button type="submit">
           Login
         </button>
+
       </form>
+       {showMessage && (
+        <DialougeBox onClose={handleClose}>
+         <p className='emp-box-p1'>{content}</p>
+        </DialougeBox>
+      )}
     </div>
     </>
   );
