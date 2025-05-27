@@ -126,7 +126,7 @@ exports.transferAmount=async(req,res)=>{
             res.status(200).json({success:true, balance:updatedUser.balance});
           }
           else{
-             res.status(404).json({message:"insufficient balance!"});
+             res.status(401).json({message:"insufficient balance!"});
           }
           
           
@@ -144,9 +144,15 @@ exports.getHistory=async(req,res)=>{
     try{
         let accno=req.body.accno;
         console.log(accno);
+        const useravailable= await user.findOne({accno:accno});
+        if(useravailable)
+        {
         const result=await transaction.find({accno:accno}).sort({time:-1});
         console.log(result);
-        res.status(200).json({success:true,history:result});
+        return res.status(200).json({success:true,history:result});
+        }
+        
+        return res.status(401).json({success:false,message:"account number invalid"});
     }
     catch(e)
     {
@@ -223,6 +229,6 @@ exports.selfDetails=async(req,res)=>{
     }
     catch(e)
     {
-        console.log(e);
+        console.log(e); 
     }
 }
