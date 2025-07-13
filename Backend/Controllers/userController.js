@@ -1,5 +1,7 @@
 const user= require('../models/userModel');
 const transaction=require('../models/transactionModel');
+const generateToken= require('../Routes/authRoute');
+require('dotenv').config();
 exports.createUser= async(req,res)=>{
     console.log(req.body);
     const {name,phno,balance,address}=req.body;
@@ -186,7 +188,8 @@ exports.userLogin=async(req,res)=>{
         
         if(phno===userobj.phno)
         {
-            return res.status(200).json({success:true});
+             const token = generateToken(accno);
+            return res.status(200).json({success:true,token:token});
         }
         return res.status(401).json({success:false,message:"incorrect phno"});
     }
@@ -198,6 +201,10 @@ exports.userLogin=async(req,res)=>{
     }
 }
 
+exports.userDash=async(req,res)=>{
+
+    res.status(200).json({success:true,message: `Welcome ${req.user.username} to the dashboard!` });
+}
 exports.checkBalance=async(req,res)=>{
    const{accno}=req.body;
    console.log(accno);

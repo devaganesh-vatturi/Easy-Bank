@@ -1,4 +1,5 @@
 const employee=require('../models/employeeModel');
+const generateToken= require('../Routes/authRoute');
 exports.empLogin=async(req,res)=>{
     console.log(req.body);
     const {employeeId,password}=req.body;
@@ -11,7 +12,12 @@ exports.empLogin=async(req,res)=>{
         
         if(password===emp.password)
         {
-            return res.status(200).json({success:true});
+        const token = generateToken(employeeId);
+         return res.status(200).json({
+            success: true,
+            token:token,
+            message: "Login successful"   
+        });
         }
         return res.status(401).json({success:false,message:"incorrect password"});
     }
@@ -21,4 +27,12 @@ exports.empLogin=async(req,res)=>{
     {
         console.log(e);
     }
+}
+
+exports.validateJWT=async(req,res)=>{
+     res.status(200).json({
+    success: true,
+    message: 'Token is valid'
+  });
+
 }
