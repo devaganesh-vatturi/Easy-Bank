@@ -11,6 +11,7 @@ const AccHolderLogin = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+    const[token,setToken]=useState(null);
     const[redirect,setRedirect]=useState(false);
     const[isLoading,setLoading]=useState(false);
     const[content,setContent]=useState("");
@@ -35,6 +36,7 @@ const AccHolderLogin = () => {
       if(response.data.success)
       {
         setContent(`successfully logged in! Welcome ${formData.accno}`);
+          setToken(response.data.token);
         setShowMessage(true);
         setRedirect(true);
       }
@@ -64,7 +66,8 @@ finally{
   const handleClose=()=>{
             setShowMessage(false);
             if(redirect){
-                 window.location.href=`/accdash?accno=${formData.accno}`;
+               let data=btoa(formData.accno)
+                 window.location.href=`/accdash?info=${data}&token=${token}`;
             }
            
   }
@@ -120,4 +123,3 @@ finally{
 };
 
 export default AccHolderLogin;
-

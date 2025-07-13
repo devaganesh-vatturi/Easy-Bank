@@ -52,6 +52,10 @@
 #accin-hero{
  margin-left:50px;
 }
+.p-check{
+  color:white;
+  font-size: 1.5rem;
+}
   .accin-img{
     margin-right: 30px;
     /* border-radius: 50%; */
@@ -81,7 +85,7 @@
   .aimg6{
     background-image: url('../assets/checkbalance.jpg');
   }
-
+ 
   @media (max-width: 768px) {
     .accin-img{
       background-size: contain;

@@ -1,8 +1,50 @@
-import React from 'react'
-import '../../Styles/EmpInterface.css'
+import React,{useState,useEffect} from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Loading from '../Operations/Loading';
+import '../../Styles/EmpInterface.css';
 import InHeader from './InHeader'
 export default function EmpInterface() {
+  const [token,setToken]=useState(null);
+  const location=useLocation();
+  const[isLoading,setLoading]=useState(false);
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+    
+ const [status, setStatus] = useState(false);
+   useEffect(() => {
+    const qp = new URLSearchParams(location.search);
+    const t = qp.get('token');
+    setToken(t);
+  }, [location.search]);
 
+  useEffect(() => {
+   setLoading(true);
+    const verifyToken = async () => {
+      if (!token) {
+        setStatus(false);
+        // navigate('/employeelogin');
+        return;
+      }
+    try {
+        const res = await axios.get(`https://easybank-qgjy.onrender.com/bank/validatejwt?token=${token}`);
+        if (res.data.success) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
+      
+      } catch (err) {
+        console.error(err);
+        setStatus(false);
+      }
+      finally{
+        setLoading(false);
+      }
+    };
+
+    verifyToken();
+  }, [token, navigate]);
    const gocreateuser=(e)=>{
     window.location.href='/createuser';
   }
@@ -21,6 +63,7 @@ export default function EmpInterface() {
   const gohistory=(e)=>{
     window.location.href='/history';
   }
+  if(!status) return "Bad GateWay";
   return (
     <div className='empin'>
       <InHeader/>
@@ -64,6 +107,9 @@ export default function EmpInterface() {
           </div>
 
       </div>
+        {
+           isLoading && <Loading data={"Fetching Details....."}/>
+                } 
       </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
 import axios from 'axios';
@@ -11,6 +11,7 @@ const EmpLogin = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const[token,setToken]=useState(null);
   const[redirect,setRedirect]=useState(false);
   const[content,setContent]=useState("");
   const[isLoading,setLoading]=useState(false);
@@ -35,6 +36,7 @@ const EmpLogin = () => {
       if(response.data.success)
       {
         setContent(`successfully logged in! Welcome ${formData.employeeId}`);
+        setToken(response.data.token);
         setShowMessage(true);
         setRedirect(true);
         
@@ -62,7 +64,7 @@ const EmpLogin = () => {
   const handleClose=()=>{
             setShowMessage(false);
             if(redirect){
-                 window.location.href='/empdash';
+                 window.location.href=`/empdash?token=${token}`;
             }
            
   }

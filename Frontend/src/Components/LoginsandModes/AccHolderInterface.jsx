@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import InHeader from './InHeader';
-import { useLocation } from 'react-router-dom';
+import Loading from '../Operations/Loading';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../../Styles/AccHolderInterface.css'
 import Login from '../Landingpage/Login';
+import axios from 'axios';
 export default function AccHolderInterface() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=qp.get('accno');
-  console.log(accno);
-  
+  const info =qp.get('info');
+  const accno= atob(info);
+  const[isLoading,setLoading]=useState(false);
+   const navigate = useNavigate();
+  const [token,setToken]=useState(null);
   const gotransfer=(e)=>{
     window.location.href=`/transfer?accno=${accno}`;
   }
@@ -21,6 +25,41 @@ export default function AccHolderInterface() {
   const goself=(e)=>{
     window.location.href=`/selfdetails?accno=${accno}`;
   }
+  const [status, setStatus] = useState(false);
+     useEffect(() => {
+      const qp = new URLSearchParams(location.search);
+      const t = qp.get('token');
+      setToken(t);
+    }, [location.search]);
+
+      useEffect(() => {
+   setLoading(true);
+    const verifyToken = async () => {
+      if (!token) {
+        setStatus(false);
+        // navigate('/employeelogin');
+        return;
+      }
+    try {
+        const res = await axios.get(`https://easybank-qgjy.onrender.com/bank/validatejwt?token=${token}`);
+        if (res.data.success) {
+          setStatus(true);
+        } else {
+          setStatus(false);
+        }
+      
+      } catch (err) {
+        console.error(err);
+        setStatus(false);
+      }
+      finally{
+        setLoading(false);
+      }
+    };
+
+    verifyToken();
+  }, [token, navigate]);
+  if(!status) return "Bad GateWay";
   return (
     <div className='accin'>
       <InHeader/>
@@ -52,6 +91,9 @@ export default function AccHolderInterface() {
           </div>
 
       </div>
+       {
+                 isLoading && <Loading data={"Fetching Details....."}/>
+                      } 
       </div>
   )
 }
