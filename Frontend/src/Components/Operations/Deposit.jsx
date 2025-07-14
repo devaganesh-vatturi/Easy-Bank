@@ -24,7 +24,7 @@ export default function Deposit() {
         {
            setContent(`successfully deposited new balance is ${result.data.balance}`);
            setShowMessage(true);
-        setUser({accno:0,amount:0});
+      
         }
       }
       catch(e)
@@ -43,6 +43,7 @@ export default function Deposit() {
       finally
       {
       setLoading(false);
+      setUser({accno:0,amount:0});
     }
     }
     else{
