@@ -13,7 +13,7 @@ import BadGateWay from './BadGateWay';
 export default function EmpOperations() {
     const [token,setToken]=useState(null);
     const [filter,setFilter]=useState(null);
-    const [status, setStatus] = useState(false);
+    const [status, setStatus] = useState(true);
     const location=useLocation();
     const[isLoading,setLoading]=useState(false);
     useEffect(() => {
@@ -30,7 +30,7 @@ export default function EmpOperations() {
    setLoading(true);
     const verifyToken = async () => {
       if (!token) {
-        setStatus(false);
+        setLoading(true);
         // navigate('/employeelogin');
         return;
       }

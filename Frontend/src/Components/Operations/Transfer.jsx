@@ -9,11 +9,23 @@ import InHeader from '../LoginsandModes/InHeader';
 export default function Transfer() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=atob(qp.get('accno'));
+ const [accno,setAccno]=useState(null);
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
   const [showMessage, setShowMessage] = useState(false);
   const[isLoading,setLoading]=useState(false);
   const[content,setContent]=useState("");
+   useEffect(() => {
+      const encodedAccno = qp.get('accno');
+      if (encodedAccno) {
+        try {
+          const decoded = atob(encodedAccno);
+          setAccno(decoded);
+        } catch (err) {
+          console.error("Invalid base64 for accno:", err.message);
+          setAccno(null); // fallback
+        }
+      }
+    }, [location.search]);
  useEffect(()=>{
   if(accno)
  {   
@@ -72,8 +84,11 @@ export default function Transfer() {
       <div className='transfer-div'>
         <center className='transfer-p'>Transfer</center>
       <div className='transfer-main'>
-     <p>Enter accno:</p>
-      <input type="number" placeholder='Acc no' onChange={handleChange} name="accno" value={accno} />
+       {
+          accno ? ( <p>My Account Number is {accno}</p>) : 
+          ( <> <p>Enter acc no</p>
+      <input type="text" name="accno" value={user.accno}  onChange={handleChange} /></> )
+        }
       <p>Enter accno you want to transfer:</p>
       <input type="number" placeholder='Acc no' onChange={handleChange} name="taccno" />
       <p>Enter amount:</p>

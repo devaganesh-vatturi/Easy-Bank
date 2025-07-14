@@ -12,7 +12,8 @@ import InHeader from '../LoginsandModes/InHeader';
 export default function History() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=atob(qp.get('accno'));
+  const [accno,setAccno]=useState(null);
+  
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
   const [showMessage, setShowMessage] = useState(false);
@@ -23,6 +24,19 @@ export default function History() {
     const {name,value}=e.target;
     setUser({...user,[name]:value});
   }
+  useEffect(() => {
+  const encodedAccno = qp.get('accno');
+  if (encodedAccno) {
+    try {
+      const decoded = atob(encodedAccno);
+      setAccno(decoded);
+    } catch (err) {
+      console.error("Invalid base64 for accno:", err.message);
+      setAccno(null); // fallback
+    }
+  }
+}, [location.search]); // rerun only when URL changes
+
 useEffect(()=>{
   if(accno)
   {
@@ -114,8 +128,12 @@ useEffect(()=>{
       <div className='history-div'>
         <center className='history-p'>History</center>
       <div className='history-main'>
-      <p>Enter acc no</p>
-      <input type="text" name="accno" value={accno}  onChange={handleChange} />
+        {
+          accno ? ( <p>My Account Number is {accno}</p>) : 
+          ( <> <p>Enter acc no</p>
+      <input type="text" name="accno" value={user.accno}  onChange={handleChange} /></> )
+        }
+     
     <center className="history-submit" onClick={handleSubmit}>Submit</center>
        
       

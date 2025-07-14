@@ -10,7 +10,7 @@ export default function EmpInterface() {
   const location=useLocation();
   const[isLoading,setLoading]=useState(false);
     const navigate = useNavigate();  
- const [status, setStatus] = useState(false);
+ const [status, setStatus] = useState(true);
    useEffect(() => {
     const qp = new URLSearchParams(location.search);
     const t = qp.get('token');
@@ -26,7 +26,7 @@ export default function EmpInterface() {
    setLoading(true);
     const verifyToken = async () => {
       if (!token) {
-        setStatus(false);
+        setLoading(true);
         // navigate('/employeelogin');
         return;
       }

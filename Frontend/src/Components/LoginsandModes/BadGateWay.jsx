@@ -19,7 +19,7 @@ export default function BadGateWay() {
     <>
     <InHeader/>
    <div className='bad-div'>
-    <p className='bad-head'>🚫 Bad Gateway</p>
+    <p className='bad-head'>Bad Gateway</p>
     <p  className='bad-des'>You’ve reached this page by mistake or with an invalid link.</p>
      <p onClick={gohome} className='bad-ref'> Click here to go back to the home page.</p>
 </div>

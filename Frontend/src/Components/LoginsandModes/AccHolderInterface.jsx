@@ -26,32 +26,29 @@ export default function AccHolderInterface() {
   const goself=(e)=>{
     window.location.href=`/accoperations?filter=self&accno=${info}&token=${token}`;
   }
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState('load');
      useEffect(() => {
       const qp = new URLSearchParams(location.search);
       const t = qp.get('token');
       setToken(t);
     }, [location.search]);
-
       useEffect(() => {
-   setLoading(true);
+   setLoading(true);  
     const verifyToken = async () => {
       if (!token) {
-        setStatus(false);
-        // navigate('/employeelogin');
-        return;
+        return "Fetching Token...";
       }
     try {
         const res = await axios.get(`https://easybank-qgjy.onrender.com/bank/validatejwt?token=${token}`);
         if (res.data.success) {
-          setStatus(true);
+          setStatus('true');
         } else {
-          setStatus(false);
+          setStatus('false');
         }
       
       } catch (err) {
         console.error(err);
-        setStatus(false);
+        setStatus('false');
       }
       finally{
         setLoading(false);
@@ -60,7 +57,8 @@ export default function AccHolderInterface() {
 
     verifyToken();
   }, [token, navigate]);
-  if(!status) return <BadGateWay/>;
+  // if(status ==='load') return <Loading/>;
+  if(status==='false') return <BadGateWay/>
   return (
     <div className='accin'>
       <InHeader/>

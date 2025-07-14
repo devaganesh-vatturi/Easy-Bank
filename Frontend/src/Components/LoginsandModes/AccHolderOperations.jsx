@@ -10,7 +10,7 @@ import BadGateWay from './BadGateWay';
 export default function AccHolderOperations() {
     const [token,setToken]=useState(null);
     const [filter,setFilter]=useState(null);
-    const [status, setStatus] = useState(false);
+    const [status, setStatus] = useState(true);
     const location=useLocation();
     const[isLoading,setLoading]=useState(false);
     useEffect(() => {
@@ -27,10 +27,9 @@ export default function AccHolderOperations() {
    setLoading(true);
     const verifyToken = async () => {
       if (!token) {
-        setStatus(false);
-        // navigate('/employeelogin');
-        return;
+       setLoading(true);
       }
+      else{
     try {
         const res = await axios.get(`https://easybank-qgjy.onrender.com/bank/validatejwt?token=${token}`);
         if (res.data.success) {
@@ -46,6 +45,7 @@ export default function AccHolderOperations() {
       finally{
         setLoading(false);
       }
+    }
     };
 
     verifyToken();
@@ -60,7 +60,7 @@ export default function AccHolderOperations() {
       case 'self':
         return <SelfDetails/>;
       case 'history':
-        return <History/> 
+        return <History/> ;
       default:
         return <BadGateWay/>;
     }

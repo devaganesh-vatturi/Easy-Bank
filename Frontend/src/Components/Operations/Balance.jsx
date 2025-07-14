@@ -7,8 +7,20 @@ import { useLocation } from 'react-router-dom';
 export default function Balance() {
   const location= useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=atob(qp.get('accno'));
+   const [accno,setAccno]=useState(null);
   const [user, setUser] = useState({accno:0});
+    useEffect(() => {
+    const encodedAccno = qp.get('accno');
+    if (encodedAccno) {
+      try {
+        const decoded = atob(encodedAccno);
+        setAccno(decoded);
+      } catch (err) {
+        console.error("Invalid base64 for accno:", err.message);
+        setAccno(null); // fallback
+      }
+    }
+  }, [location.search]);
    useEffect(() => {
     if (accno) {
       setUser({ accno: Number(accno) });
@@ -60,8 +72,11 @@ export default function Balance() {
      <div className='bal-div'>
       <center className='bal-p'>Balance</center>
       <div className='bal-main'>
-      <p>Enter accno:</p>
-      <input type="number" placeholder='Acc no' name="accno" value={accno} onChange={handleChange}/>
+       {
+          accno ? ( <p>My Account Number is {accno}</p>) : 
+          ( <> <p>Enter acc no</p>
+      <input type="text" name="accno" value={user.accno}  onChange={handleChange} /></> )
+        }
      <center className="bal-submit" onClick={handleSubmit}>Submit</center>
      {gotBalance.state && <center className='bal-bal'>The balance is {gotBalance.amount}</center>}
       </div>
