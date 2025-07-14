@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../../Styles/EmpLogin.css';
 import Header from '../Landingpage/Header';
 import axios from 'axios';
@@ -9,6 +10,7 @@ const EmpLogin = () => {
     employeeId:"",
     password: ''
   });
+    const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
   const[token,setToken]=useState(null);
@@ -64,7 +66,8 @@ const EmpLogin = () => {
   const handleClose=()=>{
             setShowMessage(false);
             if(redirect){
-                 window.location.href=`/empdash?token=${token}`;
+            window.location.replace(`/empdash?token=${token}`);
+
             }
            
   }

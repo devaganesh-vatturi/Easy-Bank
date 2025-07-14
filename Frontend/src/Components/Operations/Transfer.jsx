@@ -9,7 +9,7 @@ import InHeader from '../LoginsandModes/InHeader';
 export default function Transfer() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=qp.get('accno');
+  const accno=atob(qp.get('accno'));
   const [user, setUser] = useState({accno:0,taccno:0,amount:0});
   const [showMessage, setShowMessage] = useState(false);
   const[isLoading,setLoading]=useState(false);

@@ -4,20 +4,24 @@ import axios from 'axios';
 import Loading from '../Operations/Loading';
 import '../../Styles/EmpInterface.css';
 import InHeader from './InHeader'
+import BadGateWay from './BadGateWay';
 export default function EmpInterface() {
   const [token,setToken]=useState(null);
   const location=useLocation();
   const[isLoading,setLoading]=useState(false);
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
-    
+    const navigate = useNavigate();  
  const [status, setStatus] = useState(false);
    useEffect(() => {
     const qp = new URLSearchParams(location.search);
     const t = qp.get('token');
     setToken(t);
   }, [location.search]);
-
+ useEffect(() => {
+  window.history.pushState(null, null, window.location.href);
+  window.onpopstate = () => {
+    window.history.go(1); // user can't go back
+  };
+}, []);
   useEffect(() => {
    setLoading(true);
     const verifyToken = async () => {
@@ -46,24 +50,24 @@ export default function EmpInterface() {
     verifyToken();
   }, [token, navigate]);
    const gocreateuser=(e)=>{
-    window.location.href='/createuser';
+    window.location.href=`/empoperations?filter=createuser&token=${token}`;
   }
-  const godeleteuser=(e)=>{
-    window.location.href='/checkbalance';
+  const goBalance=(e)=>{
+    window.location.href=`/empoperations?filter=balance&token=${token}`;
   }
   const godeposit=(e)=>{
-    window.location.href='/deposit';
+    window.location.href=`/empoperations?filter=deposit&token=${token}`;
   }
   const gotransfer=(e)=>{
-    window.location.href='/transfer';
+    window.location.href=`/empoperations?filter=transfer&token=${token}`;
   }
   const gowithdraw=(e)=>{
-    window.location.href='/withdraw';
+    window.location.href=`/empoperations?filter=withdraw&token=${token}`;
   }
   const gohistory=(e)=>{
-    window.location.href='/history';
+    window.location.href=`/empoperations?filter=history&token=${token}`;
   }
-  if(!status) return "Bad GateWay";
+  if(!status) return <BadGateWay/>;
   return (
     <div className='empin'>
       <InHeader/>
@@ -99,7 +103,7 @@ export default function EmpInterface() {
             <p className='empin-hero-t2'>To print the user bank statement in pdf</p>
             </div><div className='empin-img img5'></div>
           </div>
-        <div className='empin-div' onClick={godeleteuser}>
+        <div className='empin-div' onClick={goBalance}>
           <div id="empin-hero">
             <p className='empin-hero-t1'>Balance Enquire</p>
             <p className='empin-hero-t2'>To check balance of a user</p>

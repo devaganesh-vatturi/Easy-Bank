@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 export default function Balance() {
   const location= useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=qp.get('accno');
+  const accno=atob(qp.get('accno'));
   const [user, setUser] = useState({accno:0});
    useEffect(() => {
     if (accno) {

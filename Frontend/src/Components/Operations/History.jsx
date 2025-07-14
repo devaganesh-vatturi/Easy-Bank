@@ -12,7 +12,7 @@ import InHeader from '../LoginsandModes/InHeader';
 export default function History() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
-  const accno=qp.get('accno');
+  const accno=atob(qp.get('accno'));
   const [user, setUser] = useState({accno:0});
   const [history, setHistory] = useState([]);
   const [showMessage, setShowMessage] = useState(false);

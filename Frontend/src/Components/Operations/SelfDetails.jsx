@@ -8,7 +8,7 @@ import Loading from './Loading';
 export default function SelfDetails() {
     const location= useLocation();
     const qp= new URLSearchParams(location.search);
-    const accno=qp.get('accno');
+    const accno=atob(qp.get('accno'));
     const [user,Setuser]= useState(null);
     console.log(accno);
     useEffect(()=>{

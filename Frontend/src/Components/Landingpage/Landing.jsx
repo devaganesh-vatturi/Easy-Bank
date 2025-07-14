@@ -13,7 +13,6 @@ export default function Landing() {
     const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
   return (<>
   
    <Header onServiceClick={() => scrollToSection(serviceRef)} 

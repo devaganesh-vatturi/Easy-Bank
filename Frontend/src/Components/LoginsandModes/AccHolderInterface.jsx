@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import '../../Styles/AccHolderInterface.css'
 import Login from '../Landingpage/Login';
 import axios from 'axios';
+import BadGateWay from './BadGateWay';
 export default function AccHolderInterface() {
   const location=useLocation();
   const qp=new URLSearchParams(location.search);
@@ -14,16 +15,16 @@ export default function AccHolderInterface() {
    const navigate = useNavigate();
   const [token,setToken]=useState(null);
   const gotransfer=(e)=>{
-    window.location.href=`/transfer?accno=${accno}`;
+    window.location.href=`/accoperations?filter=transfer&accno=${info}&token=${token}`;
   }
   const gohistory=(e)=>{
-    window.location.href=`/history?accno=${accno}`;
+    window.location.href=`/accoperations?filter=history&accno=${info}&token=${token}`;
   }
   const gobalance=(e)=>{
-     window.location.href=`/checkbalance?accno=${accno}`;
+     window.location.href=`/accoperations?filter=balance&accno=${info}&token=${token}`;
   }
   const goself=(e)=>{
-    window.location.href=`/selfdetails?accno=${accno}`;
+    window.location.href=`/accoperations?filter=self&accno=${info}&token=${token}`;
   }
   const [status, setStatus] = useState(false);
      useEffect(() => {
@@ -59,7 +60,7 @@ export default function AccHolderInterface() {
 
     verifyToken();
   }, [token, navigate]);
-  if(!status) return "Bad GateWay";
+  if(!status) return <BadGateWay/>;
   return (
     <div className='accin'>
       <InHeader/>

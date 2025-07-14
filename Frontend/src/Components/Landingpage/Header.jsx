@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import '../../Styles/Header.css';
-export default function Header({onServiceClick,onLoginClick,onQuestionClick,Mode}) {
+export default function Header({onServiceClick,onLoginClick,onQuestionClick,onAboutClick,Mode}) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showmenu,setShowmenu]=useState(true);
   const toggleMenu = () => {
@@ -17,6 +17,9 @@ export default function Header({onServiceClick,onLoginClick,onQuestionClick,Mode
 }, [Mode]);
   const gomain=(e)=>{
     window.location.href='/';
+  }
+   const goabout=(e)=>{
+    window.location.href='/aboutus';
   }
   // useEffect(() => {
   //   if (menuOpen) {
@@ -40,7 +43,7 @@ export default function Header({onServiceClick,onLoginClick,onQuestionClick,Mode
        <p className='head-line-p' onClick={onServiceClick}>Services</p>
        <p className='head-line-p' onClick={onLoginClick}>Login</p>
         <p className='head-line-p' onClick={onQuestionClick}>Questions</p>
-       <p className='head-line-p'>About us</p>
+       <p className='head-line-p' onClick={goabout}>About us</p>
          
       </div>
       </>
